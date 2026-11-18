@@ -202,20 +202,23 @@ const sun1=x=>Number(x).toFixed(1);
 const naira=x=>"₦"+(x>=10000?(Math.round(x/100)*100).toLocaleString("en-NG"):n0(x));
 
 /* ---------- the sums ---------- */
-function calc(){
-  const on=all().filter(a=>a.on);
+/* sums:start (tests/sums.test.js runs this block on its own, so keep it free of page code) */
+function size(on,price,sun,share,R){
   const watts=on.reduce((t,a)=>t+a.w*a.q,0);
   const day=on.reduce((t,a)=>t+a.w*a.q*a.h/1000,0);
-  const month=day*RULES.daysInMonth, cost=month*S.price;
-  const share=WHEN.find(w=>w.id===S.when).night;
+  const month=day*R.daysInMonth, cost=month*price;
   const night=day*share, daytime=day-night;
-  const inverter=watts/RULES.inverterLoad/1000;
-  const battery=night/RULES.batteryUse;
-  const refill=night/(1-RULES.batteryLoss);
+  const inverter=watts/R.inverterLoad/1000;
+  const battery=night/R.batteryUse;
+  const refill=night/(1-R.batteryLoss);
   const make=daytime+refill;
-  const kwp=make/(S.sun*RULES.panelLosses);
-  const panels=Math.ceil(kwp*1000/RULES.panelWatts-1e-9);
+  const kwp=make/(sun*R.panelLosses);
+  const panels=Math.max(0,Math.ceil(kwp*1000/R.panelWatts-1e-9));
   return {n:on.length,watts,day,month,cost,share,night,daytime,inverter,battery,refill,make,kwp,panels};
+}
+/* sums:end */
+function calc(){
+  return size(all().filter(a=>a.on),S.price,S.sun,WHEN.find(w=>w.id===S.when).night,RULES);
 }
 
 /* ---------- drawing ---------- */

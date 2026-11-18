@@ -1,0 +1,33 @@
+# Runs the checks in validate.py on every pull request, and again on main after a merge.
+# To make a passing check compulsory before merging, see "Checks before merging" in the README.
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install PyYAML
+        run: pip install pyyaml
+      - name: Run the checks
+        run: python validate.py
