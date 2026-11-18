@@ -78,4 +78,8 @@ The site runs as a Cloudflare Worker that serves static files.
 
 ## License
 
-MIT. See `LICENSE`.
+Copyright (C) 2026 bigbrovar.
+
+This program is free software: you can redistribute it and modify it under the terms of the GNU General Public License, version 3, as published by the Free Software Foundation. It comes with no warranty. See `LICENSE` for the full text.
+
+In short: you may use, copy and change it, but if you share your version, you must share its source under the same licence.

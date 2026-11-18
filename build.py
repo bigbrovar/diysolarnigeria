@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 bigbrovar. Licensed under the GNU General Public License, version 3. See LICENSE.
 """Build the DIY Solar Calculator.
 
 Reads data/calculator.yaml, checks it, and writes one self-contained page to
