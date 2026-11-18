@@ -23,6 +23,9 @@ Every number in those rules is in `data/calculator.yaml`, and the page shows the
 | `data/calculator.yaml` | Everything you might change: appliances, states and sun hours, price bands, sizing rules and wording |
 | `template.html` | The page: layout, styles and the calculator's JavaScript |
 | `build.py` | Checks the data and writes `dist/index.html` |
+| `validate.py` | Runs every check before a change is merged |
+| `tests/sums.test.js` | Hand-worked answers the sums are checked against |
+| `.github/workflows/validate.yml` | Tells GitHub to run the checks on every pull request |
 | `wrangler.jsonc` | Cloudflare Worker settings |
 | `og.png` | The picture shown when a link to the site is shared |
 
@@ -51,6 +54,33 @@ Edit `data/calculator.yaml`, run `python3 build.py`, and reload the page.
 - **Change a state's sun hours:** edit `states`.
 
 Do not change an appliance's `id` once the site is live. Share links use the ids, so an old link would stop ticking that appliance.
+
+## Checks before merging
+
+`validate.py` checks a change before it goes live. GitHub runs it on every pull request, and you can run it yourself:
+
+```
+python3 validate.py
+```
+
+It needs Python 3 with PyYAML, and Node.js 18 or newer. It checks that:
+
+- the data is valid and the page builds
+- all 36 states and the FCT are listed
+- the wording has no em dashes
+- the built page is complete, with nothing left unfilled
+- the page's JavaScript has no syntax errors
+- the sums match answers worked out by hand (`tests/sums.test.js`)
+
+If you change a sizing rule on purpose, the expected answers in `tests/sums.test.js` need working out again.
+
+To stop a pull request being merged while the check is failing:
+
+1. On GitHub, open the repo's **Settings**, then **Rules**, then **Rulesets**, and choose **New branch ruleset**.
+2. Name it `main`, set **Enforcement status** to **Active**, and under **Target branches** add **Include default branch**.
+3. Tick **Require a pull request before merging**.
+4. Tick **Require status checks to pass**, click **Add checks**, and pick `validate`.
+5. Click **Create**.
 
 ## Put it on Cloudflare
 
