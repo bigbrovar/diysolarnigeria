@@ -103,7 +103,7 @@ The site runs as a Cloudflare Worker that serves static files.
 ## Where the numbers come from
 
 - **Price bands:** home (non-MD) rates for Abuja Electric from [NERC order ORDER/NERC/2025/059](https://nerc.gov.ng/wp-content/uploads/2025/08/AEDC_July_2025_059.pdf), effective 1 July 2025. Other DisCos differ a little in Bands B to D.
-- **Sun hours:** provisional estimates by region. They still need replacing with figures from a published source, and the page labels them as provisional until then.
+- **Sun hours:** the yearly average at each state capital from [NASA POWER](https://power.larc.nasa.gov), the long-term average of sunlight on a flat surface (parameter `ALLSKY_SFC_SW_DWN`), rounded to one decimal. The rainy season runs lower than the yearly figure.
 - **Appliance watts:** typical figures. Check the label on your own appliance.
 
 ## License
