@@ -10,7 +10,7 @@ It is a static page. There is no database, no login and no server code, and noth
 | --- | --- |
 | Inverter | Add up the watts of everything ticked, as if all of it runs at once. Divide by 0.8 so the inverter runs at 80% of its rating or less. |
 | Lithium battery | Take the energy used after sunset and divide by 0.8, so the battery never goes below 20%. |
-| Solar panels | Daytime use, plus night use with 3% lost in the battery, divided by (sun hours x 0.75). The 0.75 covers heat, dust, cable and inverter losses. Panels are counted at 550 W each. |
+| Solar panels | Daytime use, plus night use with 3% lost in the battery, divided by (sun hours x 0.75). The sun hours are for the lowest month of the year in your state, so the panels keep up all year. The 0.75 covers heat, dust, cable and inverter losses. Panels are counted at 550 W each. |
 
 It is a safe estimate. Assuming everything runs at once makes the result slightly oversized, on purpose.
 
@@ -51,7 +51,7 @@ Edit `data/calculator.yaml`, run `python3 build.py`, and reload the page.
 - **Add an appliance:** add a line under the right group with an `id`, `name`, `watts`, `qty` and `hours`.
 - **Change a price band:** edit `bands`.
 - **Change a sizing rule:** edit `rules`. The explanation on the page updates itself.
-- **Change a state's sun hours:** edit `states`.
+- **Change a state's sun hours:** edit `states`. `low` is the lowest month and is what the sums use; `yearly` is shown for comparison.
 
 Do not change an appliance's `id` once the site is live. Share links use the ids, so an old link would stop ticking that appliance.
 
@@ -103,7 +103,7 @@ The site runs as a Cloudflare Worker that serves static files.
 ## Where the numbers come from
 
 - **Price bands:** home (non-MD) rates for Abuja Electric from [NERC order ORDER/NERC/2025/059](https://nerc.gov.ng/wp-content/uploads/2025/08/AEDC_July_2025_059.pdf), effective 1 July 2025. Other DisCos differ a little in Bands B to D.
-- **Sun hours:** provisional estimates by region. They still need replacing with figures from a published source, and the page labels them as provisional until then.
+- **Sun hours:** from [NASA POWER](https://power.larc.nasa.gov), the long-term average of sunlight on a flat surface at each state capital (parameter `ALLSKY_SFC_SW_DWN`), rounded to one decimal. The calculator sizes panels for the lowest month of the year, which is August in most states, and shows the yearly average beside it.
 - **Appliance watts:** typical figures. Check the label on your own appliance.
 
 ## License

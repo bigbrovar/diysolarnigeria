@@ -24,6 +24,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 DATA = ROOT / "data" / "calculator.yaml"
 TEMPLATE = ROOT / "template.html"
 DIST = ROOT / "dist"
+MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
 problems = []
 
@@ -124,8 +125,14 @@ def main():
     if not isinstance(states, dict) or not states:
         problem("states", "should list each state with its sun hours")
         states = {}
-    for name, hours in states.items():
-        number(hours, f"states, {name}", 2, 8)
+    for name, s in states.items():
+        if not isinstance(s, dict):
+            problem(f"states, {name}", "needs low, month and yearly")
+            continue
+        number(s.get("low"), f"states, {name}, low", 2, 8)
+        number(s.get("yearly"), f"states, {name}, yearly", 2, 8)
+        if s.get("month") not in MONTHS:
+            problem(f"states, {name}, month", "should be a month name, like August")
 
     # defaults
     defaults = doc.get("defaults") or {}
@@ -178,7 +185,7 @@ def main():
                   "panelWatts": rules["panel_watts"], "daysInMonth": rules["days_in_month"]},
         "bands": [{"name": b["name"], "price": b["price"]} for b in bands],
         "when": [{"id": w["id"], "label": w["label"], "night": w["night"]} for w in when],
-        "states": [[name, hours] for name, hours in states.items()],
+        "states": [[name, s.get("low"), s.get("month"), s.get("yearly")] for name, s in states.items() if isinstance(s, dict)],
         "groups": [{"title": g["title"], "note": g["note"],
                     "items": [{"id": a["id"], "name": a["name"], "w": a["watts"], "q": int(a["qty"]),
                                "h": a["hours"], "on": bool(a.get("selected", False))}
@@ -224,8 +231,6 @@ def main():
 
     count = sum(len(g["items"]) for g in data["groups"])
     print(f"Built dist/index.html: {count} appliances, {len(states)} states, {len(bands)} price bands.")
-    if "provisional" in doc["sun_note"].lower():
-        print("Note: the sun hours are still marked provisional.")
     if not site_url:
         print("Note: site_url is empty, so shared links will not show a preview card yet.")
 

@@ -269,8 +269,8 @@ function drawResults(){
 }
 function drawSets(){
   $("#sun").value=sun1(S.sun); $("#price").value=S.price;
-  const base=STATES.find(s=>s[0]===S.state)[1];
-  $("#sunnote").textContent=S.sunEdited?`Your own figure. The average for ${S.state} is ${sun1(base)}.`:`${D.sunNote.replace("{state}",S.state)}`;
+  const st=STATES.find(s=>s[0]===S.state);
+  $("#sunnote").textContent=S.sunEdited?`Your own figure. For ${st[0]}, the lowest month is ${sun1(st[1])} (${st[2]}) and the yearly average is ${sun1(st[3])}.`:D.sunNote.replace("{state}",st[0]).replace("{month}",st[2]).replace("{yearly}",sun1(st[3]));
   document.querySelectorAll("#when button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===S.when));
   document.querySelectorAll("#bands button").forEach(b=>b.setAttribute("aria-pressed",Number(b.dataset.p)===S.price));
 }
