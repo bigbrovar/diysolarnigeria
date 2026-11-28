@@ -79,6 +79,7 @@ It needs Python 3 with PyYAML, and Node.js 22.23.4 or newer. It checks that:
 - all 36 states and the FCT are listed
 - the wording has no em dashes, in the calculator and in the wiki
 - the wiki builds, and every link inside it points to a page that exists
+- every wiki page carries the disclaimer
 - the built page is complete, with nothing left unfilled
 - the page's JavaScript has no syntax errors
 - the sums match answers worked out by hand (`tests/sums.test.js`)
@@ -129,6 +130,8 @@ The device-level wiring drawings in `wiki/src/diagrams/anor/` (fuses, surge prot
 
 - Articles use only posts by the agreed contributors. Other group members are not quoted or named.
 - Every article says who it draws on and when the discussions took place.
+- Anything taken from outside the group goes in its own section at the end of the article, marked as such, with a link to the source.
+- The disclaimer at the bottom of every page comes from `wiki/src/components/Footer.astro`. The full text is `wiki/src/content/docs/about/disclaimer.md`.
 - No selling. The group's no-commercial rule applies here too.
 - **Never commit a raw Telegram export.** It contains every member's posts.
 

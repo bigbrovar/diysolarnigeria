@@ -16,6 +16,7 @@ export default defineConfig({
       description:
         'Practical solar knowledge from the DIY Solar Nigeria Telegram group, organised by topic.',
       customCss: ['./src/styles/site.css'],
+      components: { Footer: './src/components/Footer.astro' },
       head: [
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
         {

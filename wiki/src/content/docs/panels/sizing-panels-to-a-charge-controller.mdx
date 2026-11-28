@@ -55,3 +55,17 @@ You cannot exceed the controller's stated limits. Within them, LifeofDan-EL's vi
 ## Start with an audit
 
 All of this assumes you know how much energy you use. bigbrovar's closing point in these discussions is always the same: start from your loads, work out your daily energy need, then size the battery, then the panels, then the controller.
+
+## What a controller maker's manual adds
+
+*This section is from published sources, not from group posts.*
+
+Victron's MPPT manuals back up the three checks and add detail worth knowing, whatever brand you use:
+
+- **Voltage is the limit that destroys controllers.** A panel's Voc goes up as it gets colder. The Voc on the label is measured at 25°C, so on a cool morning the real figure is higher. Victron states the limit as an absolute maximum in the coldest conditions, and tells you to use the panel's temperature coefficient when counting panels in series. This is the reason for bigbrovar's margin of about 120 V on a 150 V controller.
+- **More panel power than the controller's rating is not harmful by itself.** The controller limits its input power if more is connected.
+- **The short circuit current limit is about wrong connections.** Victron's specification says a higher short circuit current may damage the charger if the array is connected with reversed polarity. Check polarity with a meter before you connect.
+
+Read these three figures in your own controller's manual. They differ between brands.
+
+Sources: [Victron SmartSolar MPPT manual, installation](https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-70_up_to_250-100_VE.Can/en/installation.html), [technical specifications](https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-70_up_to_250-100_VE.Can/en/technical-specifications.html).

@@ -86,3 +86,17 @@ Niyi Solar: a ferrule is not a crimp terminal. A ferrule only gives a stranded w
 :::danger
 A battery bank can deliver a very large current into a short circuit. Have the DC side installed or checked by someone qualified, and check every figure here against your inverter's and battery's own manuals.
 :::
+
+## What Victron's wiring guide says
+
+*This section is from published sources, not from group posts.*
+
+Victron Energy's free book, Wiring Unlimited, gives the same advice as the members above and explains the reason: a cable is a resistor, and the longer the cable, the higher its resistance. In a badly wired parallel bank the battery nearest the load carries most of the current and fails early.
+
+Its rule is that the total path of the current in and out of each battery must be equal. It lists these correct ways to wire a parallel bank:
+
+- Busbars, with every battery on its own cable of the same length.
+- Positive and negative posts, with equal cable length from each post to each battery.
+- A diagonal connection, taking positive from one end of the bank and negative from the other. Victron's own guidance is that this is simple and acceptable for two batteries, and that three or more should use busbars or posts.
+
+Sources: [Wiring Unlimited, battery bank wiring](https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/battery-bank-wiring.html), [Victron on parallel battery wiring](https://www.victronenergy.com/knowledge-articles/2026/11/9/how-to-wire-rv-battery-connection).

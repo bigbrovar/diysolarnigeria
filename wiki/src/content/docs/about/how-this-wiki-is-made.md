@@ -32,8 +32,12 @@ Questions from other members are restated in neutral words. Other members are no
 
 The [DIY Solar Calculator](https://diysolarng.openculture.org.ng/) works out what size of inverter, battery and panels covers your appliances. The wiki explains the reasoning behind those sizes and what to do once you have the equipment.
 
+## Outside sources
+
+Some pages end with a section drawn from published sources, such as manufacturers' manuals. Those sections are marked as such and link to the source, so you can check it yourself.
+
 ## How to read it
 
 - **Check the dates.** Prices, product models and tariffs change. Each article says when the source discussions took place.
 - **Members sometimes disagree.** Where they do, the article gives each position and who holds it.
-- **This is peer advice, not a design service.** Mains wiring, earthing and battery work can kill or start fires. Use a qualified electrician for that work and check every setting against your own equipment's manual.
+- **This is peer advice, not a reference guide or a design service.** Read the [disclaimer](/wiki/about/disclaimer/).

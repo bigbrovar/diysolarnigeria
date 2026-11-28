@@ -44,3 +44,16 @@ He keeps both on purpose. In rainy season the morning can be cloudy while the la
 ## A tool for the job
 
 He recommends the Android app [Solar Power Pro](https://play.google.com/store/apps/details?id=com.exigo.solarpowerpro). It has a compass for direction and an inclinometer for tilt. The paid version can simulate the expected yield for each direction.
+
+## Tilt and dust
+
+*This section is from published sources, not from group posts.*
+
+Panel makers' installation manuals add one consideration that matters in harmattan: dust.
+
+- Several manufacturers, including SoliTek and Chint (Astronergy), recommend a tilt of at least 10°, so that rain can wash dust off the glass.
+- Q CELLS allows as little as 3°, but tells installers to check regularly for dirt build-up on any array tilted at less than 20°.
+
+This does not contradict the advice above. A tilt between 5° and 15° gives the best output for the sun's position. Towards the flat end of that range, expect to clean the panels yourself more often. Towards 10° to 15°, rain does more of it for you. Check the minimum tilt in your own panel's installation manual, since it can be a warranty condition.
+
+Sources: [SoliTek installation manual](https://share.finqu.com/1043d82eee4cb7e0978dbb8cc429a67f51b598b586a7222a593c1cf6553b99c6/solitek-solid-installation-manual.pdf), [Astronergy (Chint Solar) module manual](https://manuals.online/astronergy/solar-panel/chsm6610m/user-manual/18e4a), [Q CELLS installation manual](https://www.manualslib.com/manual/1340059/Q-Cells-Q-Pro.html?page=9).

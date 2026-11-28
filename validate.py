@@ -129,6 +129,9 @@ def wiki(built):
             if not (target.is_file() or (target / "index.html").is_file()):
                 problems.append(f"{page.relative_to(ROOT / 'dist')} links to {link}, which does not exist")
     check("The wiki is built and its links work", problems)
+    missing = [str(page.relative_to(ROOT / "dist")) for page in sorted(out.rglob("*.html"))
+               if page.name != "404.html" and "Not a reference guide." not in page.read_text(encoding="utf-8")]
+    check("Every wiki page carries the disclaimer", [f"{name} has no disclaimer" for name in missing])
 
 
 def script():

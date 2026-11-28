@@ -65,3 +65,16 @@ bigbrovar's own settings, on a bank that was top balanced first: cells charge to
 - The BMS voltage readings are calibrated against a precision multimeter.
 - The BMS shares its voltage with the inverter and the charge controller, so all three agree.
 - An automation reduces the charge current as the battery fills, from 160 A down to 30 A at 98% on a 560 Ah bank. The slow finish gives the balancer time to work, and no cell jumps to the limit.
+
+## A step-by-step tutorial
+
+*This section is from published sources, not from group posts.*
+
+The DIY Solar Power Forum hosts a detailed tutorial for top balancing with a low-cost 10 A bench power supply, for people without a programmable cell tester. Its approach in outline:
+
+1. If the cells are far from full, charge them most of the way first, assembled as a battery with the BMS set to stop when any cell reaches 3.65 V.
+2. Then connect all the cells in parallel and finish the charge at 3.65 V with the bench supply.
+
+It also describes a gentler 3.6 V target for people who prefer not to go to 3.65 V. Read the whole document before you start. Whatever method you use, check the supply's voltage setting with a multimeter before you connect it. Set wrongly, it will overcharge the cells.
+
+Source: [Top balancing LiFePO4 cells using a low-cost benchtop power supply](https://www.diysolarforum.com/resources/top-balancing-lifepo4-cells-using-a-low-cost-benchtop-power-supply.65/), DIY Solar Power Forum.
