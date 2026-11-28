@@ -1,0 +1,102 @@
+---
+title: Connecting the battery to the inverter
+description: Cable sizes, breakers, busbars and the right way to parallel batteries between the battery bank and the inverter.
+contributors: [Niyi Solar, bigbrovar, AshipaEk0]
+discussed: September 2023, January 2024, June 2024, July 2024, August 2024, September 2024, October 2025, November 2026
+sidebar:
+  order: 2
+---
+
+import Schematic from '../../../components/Schematic.astro';
+
+*From posts by Niyi Solar, bigbrovar, AshipaEk0. Discussed in the group: September 2023, January 2024, June 2024, July 2024, August 2024, September 2024, October 2025, November 2026.*
+
+**What cable, protection and layout should sit between the battery and the inverter?**
+
+This is the highest current connection in the system. bigbrovar's warning: DC is not forgiving like AC. It is high current, it does not alternate, and once an arc starts it is hard to break. If you can spend millions of naira on a battery and inverter, you can spend properly on the cabling.
+
+## Cable size
+
+| System | Minimum | Recommended | Source |
+|---|---|---|---|
+| 3 kVA, 24 V | 16 mm² as an absolute minimum | 25 to 35 mm² | Niyi Solar |
+| 6 kVA with up to 100 A charging | 35 mm² | 50 mm² on a budget inverter | Niyi Solar |
+| About 5 to 6 kW, 48 V, 2 to 3 m run | | 50 mm² | bigbrovar's own system |
+
+How to think about it:
+
+- **Size for the worst case, not your usual load.** Niyi Solar: the cable has to carry the maximum charge from solar and mains together, and the short circuit current the inverter can present.
+- **Size for voltage drop.** bigbrovar chose 50 mm² for about 1% drop: his 6 kW inverter can accept 9 kW of solar, which is up to about 190 A, over a 2 m run.
+- **Keep it short.** Place the battery close to the inverter so the cable is as short as it can be without straining the terminals.
+- **Use genuine flexible copper cable.**
+
+A real case Niyi Solar reviewed shows what undersizing does: 2.5 mm² cable, rated for about 15 A, between a charge controller and a battery over a long run. The result is voltage drop, an undercharged battery that dies early, and a fire risk as soon as the panels push the cable past its rating.
+
+## Breakers
+
+| Position | Device | Rating in the examples given |
+|---|---|---|
+| Each battery to the busbar | DC MCCB | 200 A (bigbrovar's battery box) |
+| Busbar to inverter | DC MCCB | 150 A (bigbrovar), 125 A with 25 mm² cable on a 3 kVA 24 V system (Niyi Solar) |
+| Charge controller to busbar | MCB or MCCB | 125 A for a 100 A controller (bigbrovar) |
+
+- **The breaker protects the cable.** If you are stuck with thin cable, the breaker has to be small enough to trip before the cable burns. Niyi Solar's example: with 6 mm² cable, fit a 20 to 32 A breaker so that it disconnects safely and does not start a fire.
+- **Use a DC MCCB on the battery, not an ordinary breaker.** AshipaEk0: if the battery pack already has one built in, you do not need a second.
+- **Buy from a reputable brand.** bigbrovar names FEEO and ZJBENY.
+
+## Use a busbar
+
+bigbrovar recommends one common positive busbar and one common negative busbar. The battery, the inverter and the charge controller each connect to the busbars:
+
+<Schematic name="battery-busbar" />
+
+It gives every device one reference point, and it makes it simple to add a battery or a second charge controller later.
+
+AshipaEk0's points on choosing one:
+
+- Rate it for the combined current. If each pack can deliver 100 A, two packs need a busbar rated for at least 200 A.
+- Thicker copper is better.
+
+## Paralleling batteries: do not daisy chain
+
+In a daisy chain the charger and load connect to battery A, A connects to B, and B connects to C. bigbrovar on why that is wrong:
+
+- The battery nearest the load does more of the work, on both charge and discharge.
+- The link from A to B also carries the current for C, so it carries double and heats up.
+
+Connect each battery to the busbar with its own cable, all the same length, each through its own MCCB. Every battery then sees the same path, and a faulty one can be isolated without shutting the system down. In bigbrovar's words, paralleling large DC batteries with no safety device between them is asking for trouble.
+
+### Paralleling two lithium packs
+
+AshipaEk0's checklist:
+
+1. Use the same type of battery with the same BMS.
+2. Only do it with packs whose BMS settings you can read and change. If you cannot verify the settings on both, do not go ahead.
+3. Set exactly the same parameters on both.
+4. Make sure each pack has a disconnect breaker between it and the busbar.
+5. Join them at the same state of charge: both empty or both full.
+6. Watch them for a few days. They should charge and discharge at similar, not identical, rates.
+
+Expect to lose communication between the battery and the inverter when you do this.
+
+## Terminals
+
+Niyi Solar: a ferrule is not a crimp terminal. A ferrule only gives a stranded wire a consistent contact surface. Battery and other high current connections need properly crimped lugs. A poor joint may seem fine at low current, then heat up as soon as real current flows.
+
+:::danger
+A battery bank can deliver a very large current into a short circuit. Have the DC side installed or checked by someone qualified, and check every figure here against your inverter's and battery's own manuals.
+:::
+
+## What Victron's wiring guide says
+
+*This section is from published sources, not from group posts.*
+
+Victron Energy's free book, Wiring Unlimited, gives the same advice as the members above and explains the reason: a cable is a resistor, and the longer the cable, the higher its resistance. In a badly wired parallel bank the battery nearest the load carries most of the current and fails early.
+
+Its rule is that the total path of the current in and out of each battery must be equal. It lists these correct ways to wire a parallel bank:
+
+- Busbars, with every battery on its own cable of the same length.
+- Positive and negative posts, with equal cable length from each post to each battery.
+- A diagonal connection, taking positive from one end of the bank and negative from the other. Victron's own guidance is that this is simple and acceptable for two batteries, and that three or more should use busbars or posts.
+
+Sources: [Wiring Unlimited, battery bank wiring](https://www.victronenergy.com/media/pg/The_Wiring_Unlimited_book/en/battery-bank-wiring.html), [Victron on parallel battery wiring](https://www.victronenergy.com/knowledge-articles/2026/11/9/how-to-wire-rv-battery-connection).

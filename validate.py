@@ -8,8 +8,8 @@ It runs every check and prints a tick or a cross for each one. It finishes with
 "All checks passed", or lists what failed and exits with an error, which is what
 makes the GitHub check go red.
 
-Needs Python 3 with PyYAML, and Node.js 18 or newer for the two checks that run
-the page's JavaScript.
+Needs Python 3 with PyYAML, and Node.js 22.23.4 or newer, which builds the wiki
+and runs the two checks on the page's JavaScript.
 """
 import json
 import pathlib
@@ -107,6 +107,33 @@ def wording():
     check("No em dashes in the wording", problems)
 
 
+def wiki(built):
+    """The wiki's articles are checked for wording, and the built wiki for missing pages and dead links."""
+    problems = []
+    for path in sorted((ROOT / "wiki" / "src" / "content" / "docs").rglob("*.md*")):
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if "—" in line:
+                problems.append(f"{path.relative_to(ROOT)}, line {number}: has an em dash. Use a comma, a colon or a shorter sentence")
+    check("No em dashes in the wiki", problems)
+    if not built:
+        return
+    out = ROOT / "dist" / "wiki"
+    problems = []
+    if not (out / "index.html").exists():
+        problems.append("dist/wiki/index.html is missing, so the wiki did not build")
+    for page in sorted(out.rglob("*.html")):
+        for link in set(re.findall(r'href="(/[^"#?]*)', page.read_text(encoding="utf-8"))):
+            if link == "/":
+                continue
+            target = ROOT / "dist" / link.lstrip("/")
+            if not (target.is_file() or (target / "index.html").is_file()):
+                problems.append(f"{page.relative_to(ROOT / 'dist')} links to {link}, which does not exist")
+    check("The wiki is built and its links work", problems)
+    missing = [str(page.relative_to(ROOT / "dist")) for page in sorted(out.rglob("*.html"))
+               if page.name != "404.html" and "Not a reference guide." not in page.read_text(encoding="utf-8")]
+    check("Every wiki page carries the disclaimer", [f"{name} has no disclaimer" for name in missing])
+
+
 def script():
     node = shutil.which("node")
     if not node:
@@ -130,6 +157,7 @@ def main():
     built = build()
     states()
     wording()
+    wiki(built)
     if built:
         page()
         script()

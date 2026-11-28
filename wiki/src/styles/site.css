@@ -1,0 +1,116 @@
+/* Colours and fonts taken from the calculator page (template.html), so the two feel like one site. */
+:root {
+  --sl-font: Figtree, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --sl-color-accent-low: #161407;
+  --sl-color-accent: #f7b53b;
+  --sl-color-accent-high: #ffe2a6;
+  --sl-color-white: #e8edf2;
+  --sl-color-gray-1: #e8edf2;
+  --sl-color-gray-2: #a9b5c2;
+  --sl-color-gray-3: #8794a1;
+  --sl-color-gray-4: #4a5866;
+  --sl-color-gray-5: #2b3743;
+  --sl-color-gray-6: #10161d;
+  --sl-color-black: #0a0e12;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #fff4d9;
+  --sl-color-accent: #9a6200;
+  --sl-color-accent-high: #6b4300;
+  --sl-color-white: #161b21;
+  --sl-color-gray-1: #161b21;
+  --sl-color-gray-2: #55606c;
+  --sl-color-gray-3: #6f7985;
+  --sl-color-gray-4: #9a958a;
+  --sl-color-gray-5: #c9c3b5;
+  --sl-color-gray-6: #e9e5da;
+  --sl-color-gray-7: #f1eee6;
+  --sl-color-black: #f6f4ee;
+}
+
+h1,
+h2,
+h3,
+.site-title {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+}
+
+/* Schematics. Wire colours match Project Anor and the calculator. */
+:root {
+  --dg-solar: #f7b53b;
+  --dg-batt: #2ed3a6;
+  --dg-grid: #5e9dff;
+  --dg-load: #b38cff;
+  --dg-data: #ff6fa3;
+  --dg-earth: #8794a1;
+  --dg-card: #10161d;
+  --dg-line: #2b3743;
+}
+:root[data-theme='light'] {
+  --dg-solar: #c47f00;
+  --dg-batt: #0b9b76;
+  --dg-grid: #2b6bdb;
+  --dg-load: #7447d6;
+  --dg-data: #c2255c;
+  --dg-earth: #6f7985;
+  --dg-card: #ffffff;
+  --dg-line: #c9c3b5;
+}
+.dg { margin: 1.5rem 0; }
+.dg-scroll { overflow-x: auto; border: 1px solid var(--dg-line); border-radius: 12px; padding: 0.5rem; }
+.dg svg { display: block; width: 100%; height: auto; }
+.dg figcaption { margin-top: 0.5rem; font-size: var(--sl-text-sm); color: var(--sl-color-gray-3); }
+.dg-legend { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; list-style: none; padding: 0; margin: 0 0 0.5rem; font-size: var(--sl-text-xs); color: var(--sl-color-gray-2); }
+.dg-legend li { display: flex; align-items: center; gap: 0.4rem; margin: 0; }
+.dg-key { display: inline-block; width: 18px; height: 3px; border-radius: 2px; background: var(--c); }
+.dg-key.earth, .dg-key.data, .dg-key.step { background: repeating-linear-gradient(90deg, var(--c) 0 4px, transparent 4px 7px); }
+.dg .solar { --c: var(--dg-solar); }
+.dg .batt { --c: var(--dg-batt); }
+.dg .grid { --c: var(--dg-grid); }
+.dg .load { --c: var(--dg-load); }
+.dg .data { --c: var(--dg-data); }
+.dg .earth { --c: var(--dg-earth); }
+.dg .step, .dg .none, .dg .neg { --c: var(--dg-earth); }
+.dg-wire { fill: none; stroke: var(--c); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wire.earth, .dg-wire.dash { stroke-dasharray: 6 5; stroke-width: 2.2; }
+.dg-wire.data { stroke-dasharray: 1 6; stroke-width: 2.4; }
+.dg-wire.step { stroke-dasharray: 2 7; stroke-width: 2.4; }
+.dg-card { fill: var(--dg-card); stroke: var(--dg-line); stroke-width: 1.2; }
+.dg-tile { fill: color-mix(in srgb, var(--c) 18%, transparent); }
+.dg-icon { fill: none; stroke: var(--c); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.dg-ttl { font: 650 15px var(--sl-font); fill: var(--sl-color-white); }
+.dg-sub { font: 400 11.5px var(--sl-font-mono); fill: var(--sl-color-gray-2); }
+.dg-tag { font: 500 10px var(--sl-font-mono); letter-spacing: 0.06em; fill: var(--sl-color-gray-3); text-transform: uppercase; }
+.dg-note { font: 400 12.5px var(--sl-font); fill: var(--sl-color-gray-2); }
+.dg-note.b { font-weight: 650; fill: var(--sl-color-white); }
+.dg-band { fill: color-mix(in srgb, var(--dg-earth) 8%, transparent); }
+.dg-band.alt { fill: color-mix(in srgb, var(--dg-earth) 16%, transparent); }
+.dg-axis { fill: none; stroke: var(--dg-line); stroke-width: 1.5; }
+
+/* Device-level wiring drawings from Project Anor. */
+.dg-wiring svg text { font-family: var(--sl-font); fill: var(--sl-color-gray-2); }
+.dg-wiring .pos { fill: none; stroke: var(--dg-solar); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .neg { fill: none; stroke: var(--dg-earth); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .ln, .dg-wiring .ld { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .ln { stroke: var(--dg-grid); }
+.dg-wiring .ld { stroke: var(--dg-load); }
+.dg-wiring .pe { fill: none; stroke: var(--sl-color-gray-3); stroke-width: 2; stroke-dasharray: 5 4; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .earthl { stroke: var(--sl-color-gray-3); stroke-width: 2.2; stroke-linecap: round; }
+.dg-wiring .encl { fill: none; stroke: var(--dg-line); stroke-width: 1.5; stroke-dasharray: 7 6; }
+.dg-wiring .lbl { font: 600 11.5px var(--sl-font); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--sl-color-gray-3); }
+.dg-wiring .val { font: 500 13px var(--sl-font-mono); fill: var(--sl-color-white); }
+.dg-wiring .valm { font: 400 12px var(--sl-font-mono); fill: var(--sl-color-gray-2); }
+.dg-wiring .comp rect.cb { fill: var(--dg-card); stroke: var(--dg-line); stroke-width: 1.2; }
+.dg-wiring .dv { fill: var(--dg-card); stroke: var(--sl-color-white); stroke-width: 1.4; }
+.dg-wiring .dvf { fill: var(--sl-color-gray-6); stroke: var(--dg-line); stroke-width: 1; }
+.dg-wiring .scr { fill: var(--dg-card); stroke: var(--sl-color-white); stroke-width: 1.2; }
+.dg-wiring .sym { fill: none; stroke: var(--sl-color-white); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .hd { fill: var(--sl-color-white); opacity: 0.82; }
+.dg-wiring .win { fill: var(--dg-batt); }
+.dg-wiring .din { fill: var(--sl-color-gray-6); stroke: var(--dg-line); stroke-width: 1; }
+.dg-wiring .jd.jp { fill: var(--dg-solar); }
+.dg-wiring .jd.jn { fill: var(--dg-earth); }
+.dg-wiring .jd.jg { fill: var(--dg-grid); }
+.dg-wiring .jd.jl { fill: var(--dg-load); }

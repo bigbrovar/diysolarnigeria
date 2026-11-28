@@ -1,0 +1,34 @@
+---
+// The three charge stages of a tubular battery: voltage and current over time.
+const caption =
+  'Charging a 12 V tubular battery. Voltage climbs during bulk, is held at 14.4 V during absorption while the current falls, then drops to 13.5 V for float.';
+---
+
+<figure class="dg">
+  <ul class="dg-legend" aria-hidden="true">
+    <li><span class="dg-key solar"></span>Voltage</li>
+    <li><span class="dg-key batt"></span>Current into the battery</li>
+  </ul>
+  <div class="dg-scroll">
+    <svg viewBox="0 0 760 300" role="img" aria-label={caption} style="min-width:620px">
+      <rect class="dg-band" x="60" y="30" width="290" height="210" />
+      <rect class="dg-band alt" x="350" y="30" width="230" height="210" />
+      <rect class="dg-band" x="580" y="30" width="160" height="210" />
+      <text class="dg-ttl" x="205" y="54" text-anchor="middle">1. Bulk</text>
+      <text class="dg-sub" x="205" y="72" text-anchor="middle">empty to about 80%</text>
+      <text class="dg-ttl" x="465" y="54" text-anchor="middle">2. Absorption</text>
+      <text class="dg-sub" x="465" y="72" text-anchor="middle">the last 20%, at least 2 hours</text>
+      <text class="dg-ttl" x="660" y="54" text-anchor="middle">3. Float</text>
+      <text class="dg-sub" x="660" y="72" text-anchor="middle">full</text>
+      <path class="dg-axis" d="M60 30V240H740" />
+      <path class="dg-wire solar" d="M60 205 C160 190 260 150 350 110 H580 C590 110 592 140 604 140 H740" />
+      <path class="dg-wire batt" d="M60 128 H350 C420 132 500 215 580 222 H740" />
+      <text class="dg-tag" x="356" y="102">14.4 V</text>
+      <text class="dg-tag" x="612" y="132">13.5 V</text>
+      <text class="dg-tag" x="66" y="120">ALL THE CURRENT THE CHARGER HAS</text>
+      <text class="dg-tag" x="470" y="214">CURRENT FALLS</text>
+      <text class="dg-sub" x="400" y="262" text-anchor="middle">Time</text>
+    </svg>
+  </div>
+  <figcaption>{caption}</figcaption>
+</figure>

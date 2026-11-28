@@ -1,0 +1,82 @@
+---
+title: How to monitor your inverter and battery
+description: What to check before you start, the hardware that connects to an inverter, and the free software that reads it.
+contributors: [AshipaEk0, bigbrovar]
+discussed: March 2024, May 2024, October 2024, January 2026
+sidebar:
+  order: 1
+---
+
+import Schematic from '../../../components/Schematic.astro';
+
+*From posts by AshipaEk0, bigbrovar. Discussed in the group: March 2024, May 2024, October 2024, January 2026.*
+
+**How do I see what my inverter and battery are doing, on my phone or computer?**
+
+Monitoring needs two things: hardware that connects to the inverter or battery, and software that reads and displays the data. AshipaEk0's observation is that the software side is flexible and has many options, while the hardware side depends on what your inverter gives you.
+
+<Schematic name="monitoring" />
+
+## Before you spend anything
+
+AshipaEk0's checklist. Answer these first, and you will know whether the project is realistic.
+
+**1. Can your equipment be monitored at all?**
+
+- Has anyone else done it with your model? Search, and ask the maker's support.
+- Does it have communication ports marked RS485 or RS232?
+- Does the manual give the pin-out for those ports?
+- Can you get the right cable without much trouble?
+
+**2. What will receive the data?**
+
+- A computer, laptop, mini PC or Raspberry Pi, or a dongle from the manufacturer?
+- Does it need the internet to work? What happens when the internet is down?
+- Will the connection reach? If it relies on Wi-Fi, test the signal where the inverter is.
+
+**3. What software will you use?**
+
+- What free options support your equipment?
+- Do you have the skill for it, or are you willing to learn?
+- Can you test the port and cable cheaply before committing?
+
+## Hardware options
+
+| Option | What it is | Trade-off |
+|---|---|---|
+| Manufacturer's Wi-Fi dongle | A stick that plugs into the inverter and sends data to the maker's app | Easy. Often updates only every 5 minutes, and your data goes to someone else's servers. |
+| Direct cable | A cable from the inverter's port to an RS485 or RS232 adapter, then to a computer or Raspberry Pi | Faster data that stays in your house. Needs the right cable and some setup. |
+| Commercial kit | A paid hardware and software bundle | Least effort. Costs money. |
+
+For the direct cable route, AshipaEk0 recommends the Waveshare RS232/RS485 to Wi-Fi and Ethernet adapter for its compatibility and flexibility. A plain RS485 or RS232 to USB adapter also works.
+
+It varies by inverter. Some need only an ordinary USB printer cable to a computer. Some have Bluetooth or Wi-Fi built in. Most need an adapter.
+
+### Voltronic and Axpert type inverters
+
+AshipaEk0's notes for this very common family:
+
+- If the inverter has a USB type B port, use that to connect to a computer. A crimped network cable only works for the battery (BMS) connection.
+- With no USB port, you need an RS232 or RS485 to USB adapter.
+- To confirm the connection works, install the official WatchPower software on Windows. It works with nearly all Voltronic boards.
+- For a permanent setup, use a Raspberry Pi or a PC running Linux. Windows and virtual machines add complications.
+
+## Software
+
+**The group's recommended starting point is [Epilykos](/wiki/monitoring/epilykos/)**, a free dashboard built by group member AshipaEk0.
+
+Other free options he has listed:
+
+| Software | Good for |
+|---|---|
+| Home Assistant, with the maker's integration | Growatt, SolaX, SMA, SolarEdge and others that have an official integration. Also the route if you want home automation. |
+| Home Assistant with a community integration | Voltronic and Axpert types, and Deye or Sunsynk types |
+| Home Assistant with a Bluetooth BMS integration | Reading a lithium battery's BMS directly |
+| [Solaranzeige](https://www.solaranzeige.de/) | A ready-made Raspberry Pi image supporting many inverters. The site is in German. |
+| Victron Venus OS on a Raspberry Pi | Victron equipment |
+| EmonCMS | Energy logging and graphs |
+| WatchPower or SolarPower | The maker's own Windows software for Voltronic types. Good for testing. |
+
+## Fix the system before you monitor it
+
+bigbrovar's advice to a member with a struggling system: monitoring is a good thing to have, but it does not fix a system whose battery, panels and loads are out of balance. Do the energy audit and balance the system first. If your equipment has no communication port, the time and money that monitoring would take is better spent on an extra panel.

@@ -1,0 +1,26 @@
+---
+// Shows a "draft for review" banner on every page while draft is true in src/site.config.js.
+import Default from '@astrojs/starlight/components/Banner.astro';
+import { draft } from '../site.config.js';
+---
+
+{draft && (
+  <div class="draft-banner">
+    <strong>Draft for review.</strong>{' '}
+    This wiki is not live yet. It is shared with members of the DIY Solar Nigeria group for
+    feedback. Tell the group what is wrong, unclear or missing.
+  </div>
+)}
+<Default><slot /></Default>
+
+<style>
+  .draft-banner {
+    padding: 0.6rem 1rem;
+    text-align: center;
+    font-size: var(--sl-text-sm);
+    line-height: 1.5;
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-white);
+    border-bottom: 1px solid var(--sl-color-accent);
+  }
+</style>

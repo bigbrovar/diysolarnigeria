@@ -1,0 +1,84 @@
+---
+title: Sizing a system in four steps
+description: Audit your loads, then size the inverter, the battery and the panels in that order.
+contributors: [AshipaEk0, bigbrovar, Samil]
+discussed: May 2023, June 2023, May 2024, November 2026
+sidebar:
+  order: 1
+---
+
+import Schematic from '../../../components/Schematic.astro';
+
+*From posts by AshipaEk0, bigbrovar, Samil. Discussed in the group: May 2023, June 2023, May 2024, November 2026.*
+
+**Where do I start, and how big should each part be?**
+
+Start with what you use, not with what a seller offers. AshipaEk0's comparison: you already know a small Tiger generator will not run a large freezer or an air conditioner, and that a Mikano is too much for a few bulbs. Solar is the same, except most people do not yet have that feel for the sizes. The audit gives you it.
+
+<Schematic name="sizing-steps" />
+
+The [DIY Solar Calculator](https://diysolarng.openculture.org.ng/) does this arithmetic for you. This page explains what it is doing and why.
+
+## Step 1: audit your energy needs
+
+List every appliance you want to run. For each, write down:
+
+- its power in watts, from the label
+- how many hours a day it runs
+
+From that list you get two numbers: the **total watts** if everything runs at once, and the **energy per day** in watt-hours (watts × hours, added up).
+
+AshipaEk0's advice is to overestimate a little. Samil's point for people who already own a system: without the audit, nobody can tell whether your system is too small or far too big for you.
+
+## Step 2: the inverter
+
+The inverter is sized from the total watts.
+
+- **Leave headroom.** An inverter run at full capacity all the time will not last.
+- **Allow for surge.** Fridges, freezers, pumps and air conditioners draw far more for a moment when they start.
+
+Two rules of thumb are in use:
+
+| Source | Rule | For a 3,000 W load |
+|---|---|---|
+| AshipaEk0 | Almost double your total load | At least 5,000 W |
+| The calculator | Total load ÷ 0.8, so the inverter runs at 80% or less | 3,750 W |
+
+The first is the safer choice when you have several motor loads. A bigger inverter does not give you more stored energy, and it uses more power just to stay on. Samil: check the standby consumption in the manual.
+
+## Step 3: the battery
+
+The battery is sized from the energy you use when the panels are not producing, which is mostly the night.
+
+Samil's picture: the battery is the fuel in the tank. How fast it empties depends on the load you put on it.
+
+How much of the battery you may use depends on the type:
+
+| Battery | Use at most | So divide your night energy by |
+|---|---|---|
+| Lithium (LiFePO4) | 80% | 0.8 |
+| Tubular or other lead acid | 50% | 0.5 |
+
+Example: 2,000 Wh used overnight needs a 2,500 Wh lithium battery, or a 4,000 Wh tubular bank.
+
+AshipaEk0 adds that for lithium this limit is really about voltage. Keep the cells between 3.0 V and 3.5 V and you are within safe limits. A quality pack should deliver its full rated energy inside that range. For tubular batteries the 50% limit is one you must respect every day. See [Getting the most from tubular batteries](/wiki/tubular-batteries/getting-the-most-from-tubular-batteries/).
+
+## Step 4: the panels
+
+The panels have to produce a whole day's energy in the few hours of good sun, and refill the battery while the house is also running.
+
+- **Do not count on the sticker.** AshipaEk0 and bigbrovar both plan on panels producing about 70% of their rated power. A 600 W panel is a 420 W panel for planning.
+- **Use conservative sun hours.** bigbrovar plans on 3 to 4 hours a day. The calculator uses the worst month of the year for your state.
+- **Add the battery's charging loss.** About 15% for tubular. A few percent for lithium.
+
+The sum:
+
+**Panel watts needed = energy per day ÷ (sun hours × 0.7)**
+
+bigbrovar's example: a home using about 2 kWh a day, refilling a tubular bank, needs about 5 kWh generated to be comfortable. A 1.5 kW array × 0.7 is about 1 kW, and 1 kW × 4 sun hours is 4 kWh on a poor day. That is slightly short, which tells you panels are the next upgrade.
+
+Then check the panels against the charge controller and the battery: [Sizing panels to a charge controller](/wiki/panels/sizing-panels-to-a-charge-controller/).
+
+## Check what you are buying
+
+AshipaEk0's reminder for step 2: an inverter should carry the IEC 62109-1 and IEC 62109-2 safety certifications. Look the brand up in the [IECEE certificate database](https://certificates.iecee.org/), and photograph the rating plate before you pay. If the plate looks home-printed, walk away.

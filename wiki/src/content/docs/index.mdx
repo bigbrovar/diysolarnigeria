@@ -1,0 +1,48 @@
+---
+title: DIY Solar Nigeria Wiki
+description: Practical solar knowledge from the DIY Solar Nigeria Telegram group, organised by topic.
+template: splash
+hero:
+  tagline: Years of answers from the DIY Solar Nigeria group, sorted by topic so you can find them.
+  actions:
+    - text: Size your system with the calculator
+      link: https://diysolarng.openculture.org.ng/
+      icon: right-arrow
+    - text: How this wiki is made
+      link: /wiki/about/how-this-wiki-is-made/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Plan your system" icon="list-format">
+    [Sizing a system in four steps](/wiki/plan-your-system/sizing-your-system/): audit, inverter,
+    battery, panels.
+  </Card>
+  <Card title="Solar panels" icon="sun">
+    [Sizing panels to a charge controller](/wiki/panels/sizing-panels-to-a-charge-controller/) and
+    [panel orientation and tilt](/wiki/panels/orientation-and-tilt/).
+  </Card>
+  <Card title="Lithium batteries" icon="star">
+    [What voltage to charge LiFePO4 cells to](/wiki/lithium-batteries/charge-voltage/) and
+    [top balancing](/wiki/lithium-batteries/top-balancing/).
+  </Card>
+  <Card title="Tubular batteries" icon="seti:db">
+    [Charging tubular batteries](/wiki/tubular-batteries/charging-tubular-batteries/) and
+    [getting the most from them](/wiki/tubular-batteries/getting-the-most-from-tubular-batteries/).
+  </Card>
+  <Card title="Wiring and protection" icon="warning">
+    [Earthing](/wiki/wiring-and-protection/earthing/),
+    [surge protection](/wiki/wiring-and-protection/surge-protection/),
+    [battery to inverter connection](/wiki/wiring-and-protection/connecting-the-battery-to-the-inverter/)
+    and [moving loads onto the inverter](/wiki/wiring-and-protection/moving-loads-onto-the-inverter/).
+  </Card>
+  <Card title="Monitoring" icon="laptop">
+    [How to monitor your inverter and battery](/wiki/monitoring/how-to-monitor-your-system/), and the
+    group's recommended dashboard, [Epilykos](/wiki/monitoring/epilykos/).
+  </Card>
+  <Card title="What is coming" icon="rocket">
+    See the [planned contents](/wiki/about/planned-contents/) for the full category list.
+  </Card>
+</CardGrid>

@@ -1,0 +1,71 @@
+---
+title: Sizing panels to a charge controller
+description: Three checks for matching a solar array to a charge controller, and why the battery sets the real limit.
+contributors: [bigbrovar, Sanusi, Gbenro, LifeofDan-EL]
+discussed: May 2023, July 2024, November 2024
+sidebar:
+  order: 1
+---
+
+import Schematic from '../../../components/Schematic.astro';
+
+*From posts by bigbrovar, Sanusi, Gbenro, LifeofDan-EL. Discussed in the group: May 2023, July 2024, November 2024.*
+
+**How many panels can a charge controller take, and in what arrangement?**
+
+You need three numbers from the controller's spec sheet and three from the panel's label. Sanusi's summary: the controller's maximum PV input voltage and how much PV it can accept decide how many panels you can have and how you arrange them.
+
+## The three checks
+
+<Schematic name="panels-to-controller" />
+
+bigbrovar's method:
+
+1. **Voltage.** Add up the open circuit voltage (Voc) of the panels you put in series. The total must be below the controller's maximum PV input voltage. Leave a margin: on a 150 V controller, aim for about 120 V.
+2. **Current.** Add up the short circuit current (Isc) of the strings you put in parallel. The total must be below the controller's input current limit.
+3. **Output.** Divide the array's total wattage by the nominal battery voltage. The result is the charging current the array can produce, and it should be within the controller's rated output current.
+
+### Worked examples
+
+| Array | Battery | Array watts ÷ battery volts | Controller |
+|---|---|---|---|
+| 1,500 W | 24 V | 62.5 A | 150 V / 70 A fits. An 80 A or 100 A model leaves room to upgrade. |
+| 4,000 W | 48 V | 83 A | 150 V / 100 A fits. |
+
+## The battery sets the real limit
+
+A controller that can accept your array does not mean your battery can accept what the controller delivers. bigbrovar's advice to a member who wanted fifteen 550 W panels on a 48 V tubular bank:
+
+- Fifteen 550 W panels is over 8 kW, which is more than 170 A at 48 V.
+- Tubular batteries should be charged at no more than about 13% of their C20 capacity. For a 400 Ah bank that is 52 A.
+- For an old or second-hand bank, go lower still. He suggested no more than 30 A in that case.
+
+So work backwards from the battery. On that system the sensible array was about 3 kW (six 550 W panels), not 8 kW. The alternative was a different system altogether: a lithium battery and an inverter built for a large solar input.
+
+Some controllers let you cap the output current. That protects the battery, but it also caps the total solar power the system can deliver, including to your loads.
+
+## Strings must match
+
+When you parallel strings, give every string the same number of panels. Gbenro's explanation: paralleled strings are pulled down to the voltage of the shortest string. Three strings of 4, 4 and 3 panels behave like three strings of 3, so you lose most of the output of the extra panels.
+
+## Should you oversize the array?
+
+You cannot exceed the controller's stated limits. Within them, LifeofDan-EL's view is that extra panel capacity is not wasted. Panels rarely reach their rated output because of shade, cloud, rain, tilt and direction. He runs a 2,200 W array on an inverter with a 1,400 W PV limit and does not see 1,400 W every day.
+
+## Start with an audit
+
+All of this assumes you know how much energy you use. bigbrovar's closing point in these discussions is always the same: start from your loads, work out your daily energy need, then size the battery, then the panels, then the controller.
+
+## What a controller maker's manual adds
+
+*This section is from published sources, not from group posts.*
+
+Victron's MPPT manuals back up the three checks and add detail worth knowing, whatever brand you use:
+
+- **Voltage is the limit that destroys controllers.** A panel's Voc goes up as it gets colder. The Voc on the label is measured at 25°C, so on a cool morning the real figure is higher. Victron states the limit as an absolute maximum in the coldest conditions, and tells you to use the panel's temperature coefficient when counting panels in series. This is the reason for bigbrovar's margin of about 120 V on a 150 V controller.
+- **More panel power than the controller's rating is not harmful by itself.** The controller limits its input power if more is connected.
+- **The short circuit current limit is about wrong connections.** Victron's specification says a higher short circuit current may damage the charger if the array is connected with reversed polarity. Check polarity with a meter before you connect.
+
+Read these three figures in your own controller's manual. They differ between brands.
+
+Sources: [Victron SmartSolar MPPT manual, installation](https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-70_up_to_250-100_VE.Can/en/installation.html), [technical specifications](https://www.victronenergy.com/media/pg/Manual_SmartSolar_MPPT_150-70_up_to_250-100_VE.Can/en/technical-specifications.html).
