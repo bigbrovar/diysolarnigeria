@@ -1,0 +1,76 @@
+---
+// Draws a schematic from a layout in src/diagrams/index.js.
+// The layout format follows Project Anor: blocks have a position and size,
+// and wires are SVG paths coloured by the kind of energy they carry.
+import { diagrams } from '../diagrams/index.js';
+
+const { name } = Astro.props;
+const d = diagrams[name];
+if (!d) throw new Error(`No diagram called "${name}" in src/diagrams/index.js`);
+
+const LABELS = {
+  solar: 'Solar DC',
+  batt: 'Battery DC',
+  grid: 'Grid AC',
+  load: 'Home AC',
+  earth: 'Earth',
+  data: 'Data cable',
+  step: 'Next step',
+};
+
+// 24 x 24 line icons.
+const ICONS = {
+  pv: 'M3 5h18v14H3zM3 12h18M9 5v14M15 5v14',
+  batt: 'M4 8h14v10H4zM18 11h2v4h-2M8 11v4M11 11v4',
+  inv: 'M5 3h14v18H5zM8 8h8M8 14c1.3-2.6 2.7-2.6 4 0s2.7 2.6 4 0',
+  board: 'M4 4h16v16H4zM8 8v8M12 8v8M16 8v8',
+  home: 'M3 11l9-7 9 7M6 10v10h12V10M10 20v-5h4v5',
+  earth: 'M12 3v9M5 12h14M8 16h8M10.5 20h3',
+  grid: 'M12 3v18M6 7h12M8 11h8M7 21l5-10 5 10',
+  chip: 'M7 7h10v10H7zM10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4',
+  phone: 'M8 3h8v18H8zM11 18h2',
+  bolt: 'M13 3L6 13h5l-1 8 7-10h-5z',
+  list: 'M5 6h2M10 6h9M5 12h2M10 12h9M5 18h2M10 18h9',
+  cable: 'M4 12h4M16 12h4M8 8h8v8H8z',
+  supply: 'M4 6h16v12H4zM8 10h3v4H8zM14 12h3',
+};
+---
+
+<figure class="dg">
+  {d.legend && (
+    <ul class="dg-legend" aria-hidden="true">
+      {d.legend.map((k) => (
+        <li><span class={`dg-key ${k}`} />{LABELS[k]}</li>
+      ))}
+    </ul>
+  )}
+  <div class="dg-scroll">
+    <svg viewBox={`0 0 ${d.w} ${d.h}`} role="img" aria-label={d.caption} style={`min-width:${Math.min(d.w, 620)}px`}>
+      {(d.wires || []).map((w) => (
+        <path class={`dg-wire ${w.k}${w.dash ? ' dash' : ''}`} d={w.d} />
+      ))}
+      {(d.wires || []).filter((w) => w.label).map((w) => (
+        <text class="dg-tag" x={w.at[0]} y={w.at[1]} text-anchor={w.anchor || 'start'}>{w.label}</text>
+      ))}
+      {(d.blocks || []).map((b) => (
+        <g class={`dg-node ${b.k || 'none'}`}>
+          <rect class="dg-card" x={b.at[0]} y={b.at[1]} width={b.at[2]} height={b.at[3]} rx="10" />
+          {b.icon && (
+            <g transform={`translate(${b.at[0] + 10} ${b.at[1] + 10})`}>
+              <rect class="dg-tile" width="38" height="38" rx="8" />
+              <path class="dg-icon" transform="translate(7 7)" d={ICONS[b.icon]} />
+            </g>
+          )}
+          <text class="dg-ttl" x={b.at[0] + (b.icon ? 58 : 14)} y={b.at[1] + 26}>{b.t}</text>
+          {(b.s || []).map((line, i) => (
+            <text class="dg-sub" x={b.at[0] + (b.icon ? 58 : 14)} y={b.at[1] + 44 + i * 15}>{line}</text>
+          ))}
+        </g>
+      ))}
+      {(d.notes || []).map((n) => (
+        <text class={`dg-note ${n.k || ''}`} x={n.at[0]} y={n.at[1]} text-anchor={n.anchor || 'start'}>{n.text}</text>
+      ))}
+    </svg>
+  </div>
+  <figcaption>{d.caption}</figcaption>
+</figure>

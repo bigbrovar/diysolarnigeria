@@ -29,6 +29,7 @@ export default defineConfig({
       sidebar: [
         { label: 'Solar calculator', link: `${SITE}/` },
         { label: 'About this wiki', items: [{ autogenerate: { directory: 'about' } }] },
+        { label: 'Plan your system', items: [{ autogenerate: { directory: 'plan-your-system' } }] },
         { label: 'Solar panels', items: [{ autogenerate: { directory: 'panels' } }] },
         { label: 'Lithium batteries', items: [{ autogenerate: { directory: 'lithium-batteries' } }] },
         { label: 'Tubular batteries', items: [{ autogenerate: { directory: 'tubular-batteries' } }] },

@@ -114,6 +114,15 @@ Open the address it prints, which ends in `/wiki/`. The page reloads as you edit
 3. Write links to other wiki pages with `/wiki/` at the front, like `/wiki/panels/orientation-and-tilt/`.
 4. For a new category, create the folder and add one line to the `sidebar` list in `wiki/astro.config.mjs`.
 
+### Add a diagram
+
+Diagrams follow the Project Anor pattern: blocks with a position and size, joined by wires coloured by the kind of energy they carry.
+
+1. Add a layout to `wiki/src/diagrams/index.js`. The comment at the top of that file explains the fields.
+2. Name the article file `.mdx`, not `.md`.
+3. Under the article's top section, add `import Schematic from '../../../components/Schematic.astro';`
+4. Put `<Schematic name="your-diagram" />` where the diagram should appear.
+
 ### Rules for wiki content
 
 - Articles use only posts by the agreed contributors. Other group members are not quoted or named.

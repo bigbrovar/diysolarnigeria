@@ -12,7 +12,7 @@ The numbers show how many discussion threads from the eight contributors fall ma
 | # | Category | Threads | Example articles |
 |---|---|---|---|
 | 1 | Start here | 163 | What a first system looks like. Start small and upgrade. Common beginner mistakes. Glossary. |
-| 2 | Plan your system | 91 | Step 1: audit your energy needs. Step 2: component specs. Step 3: battery sizing. Step 4: panel sizing. 12 V, 24 V or 48 V? |
+| 2 | Plan your system | 91 | Sizing a system in four steps. 12 V, 24 V or 48 V? Worked examples by home size. |
 | 3 | Solar panels | 820 | Sizing panels to a charge controller. Orientation and tilt. Series and parallel strings. Mounting and roofs. Over-panelling. Seasonal output. |
 | 4 | Charge controllers | 69 | MPPT or PWM. How battery charge stages work. Limiting charge current. |
 | 5 | Inverters | 1,094 | Low frequency or high frequency. All-in-one hybrids. Notes by brand. Upgrading an inverter. Dust and heat. |

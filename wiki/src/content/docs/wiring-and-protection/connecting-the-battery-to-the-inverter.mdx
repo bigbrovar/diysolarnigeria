@@ -7,6 +7,8 @@ sidebar:
   order: 2
 ---
 
+import Schematic from '../../../components/Schematic.astro';
+
 *From posts by Niyi Solar, bigbrovar, AshipaEk0. Discussed in the group: September 2023, January 2024, June 2024, July 2024, August 2024, September 2024, October 2025, November 2026.*
 
 **What cable, protection and layout should sit between the battery and the inverter?**
@@ -46,11 +48,7 @@ A real case Niyi Solar reviewed shows what undersizing does: 2.5 mm² cable, rat
 
 bigbrovar recommends one common positive busbar and one common negative busbar. The battery, the inverter and the charge controller each connect to the busbars:
 
-```
-Battery ── 200 A MCCB ──┐
-                        ├── Battery busbar (+ and −) ── 150 A MCCB ── Inverter
-Charge controller ── 125 A breaker ──┘
-```
+<Schematic name="battery-busbar" />
 
 It gives every device one reference point, and it makes it simple to add a battery or a second charge controller later.
 

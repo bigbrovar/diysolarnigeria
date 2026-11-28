@@ -1,0 +1,67 @@
+---
+title: Top balancing lithium cells
+description: What top balancing is, when you need it, how to do it, and how to tell that a battery needs it.
+contributors: [bigbrovar, Niyi Solar]
+discussed: June 2024, July 2024, August 2024, September 2024, November 2024
+sidebar:
+  order: 2
+---
+
+import Schematic from '../../../components/Schematic.astro';
+
+*From posts by bigbrovar, Niyi Solar. Discussed in the group: June 2024, July 2024, August 2024, September 2024, November 2024.*
+
+**What is top balancing, and does my battery need it?**
+
+## What it is
+
+bigbrovar: top balancing is something you do once, when you assemble loose cells into a battery. The cells arrive at different states of charge. You charge every one of them to 100%, which is 3.65 V for LiFePO4. They then all start from the same point, so when you use 40% of the battery, every cell is at 60%.
+
+The BMS does not do this. The balancer in the BMS keeps cells in step afterwards and stops them drifting apart again.
+
+## Do you need to?
+
+Niyi Solar: it depends on the balancer you have.
+
+| Your BMS | Top balance by hand? |
+|---|---|
+| Passive balancer, about 0.3 A | Yes. It is too small to fix a real imbalance, but once the cells start balanced it can keep them there. |
+| Active balancer of about 2 A, as in a JK BMS | Not necessary. Set a safe charge voltage, for example 54.5 V on a 16 cell pack, and let the balancer work. The safe voltage stops the highest cell spiking while it does. |
+
+Either way, the balance start voltage, stop voltage and allowed difference need to suit the type of balancer and your charge voltage. See [What voltage to charge LiFePO4 cells to](/wiki/lithium-batteries/charge-voltage/).
+
+## How to tell a battery is out of balance
+
+The symptom bigbrovar diagnosed for one member: charging stops early, with one cell at 3.55 V while others are still at 3.38 V.
+
+The reason is the flat voltage curve. Between about 3.2 V and 3.39 V a cell at 40% and a cell at 70% read almost the same, so an imbalance stays hidden for most of the charge. Near the top the fuller cell suddenly runs ahead. He calls it the runner, and the others the laggers. The runner hits the BMS over-voltage limit and charging stops while the laggers are only about 80% full. A 2 A balancer then has a lot of energy to move, and that takes a long time.
+
+## How to do it
+
+<Schematic name="top-balance" />
+
+**The effective way.** bigbrovar's method for his own bank:
+
+1. Charge each cell by itself to 3.65 V, using a charger made for lithium cells. He uses a programmable ZKE tester set to charge at 40 A and stop when the current falls to 2 A.
+2. Join all the cells in parallel and charge the group to 3.65 V again.
+3. Assemble the battery.
+
+The battery is out of service while you do this, and you need a separate power source.
+
+Charging each cell alone also tells you how good the cells are. The tester records how many amp-hours each cell took and plots its voltage curve. Cells that were balanced at the factory take similar amounts. Well matched cells, with similar internal resistance and charging behaviour, are what make a pack Grade A.
+
+**The slow way, with an active balancer.** If you cannot take the battery apart:
+
+1. Reduce the charge rate to 0.2C or less.
+2. Set the balancer to start at 3.38 V.
+3. Set the over-voltage recovery to 3.42 V.
+
+Charging takes much longer, but it gives the balancer time to bring the laggers up.
+
+## Keeping it balanced
+
+bigbrovar's own settings, on a bank that was top balanced first: cells charge to 3.45 V, balancing starts at 3.42 V, and over-voltage protection is at 3.47 V. He says that margin is tight, and it only works for him because of three other things:
+
+- The BMS voltage readings are calibrated against a precision multimeter.
+- The BMS shares its voltage with the inverter and the charge controller, so all three agree.
+- An automation reduces the charge current as the battery fills, from 160 A down to 30 A at 98% on a 560 Ah bank. The slow finish gives the balancer time to work, and no cell jumps to the limit.
