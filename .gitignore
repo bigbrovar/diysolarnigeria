@@ -2,3 +2,8 @@ dist/
 __pycache__/
 .wrangler/
 .DS_Store
+node_modules/
+wiki/.astro/
+# Raw Telegram exports must never be committed: they contain every member's posts.
+messages*.html
+result.json

@@ -4,6 +4,8 @@ A one-page calculator for Nigerian homes. Tick the appliances you run and it sho
 
 It is a static page. There is no database, no login and no server code, and nothing a visitor enters leaves their browser.
 
+The same site also carries the **DIY Solar Nigeria Wiki** at `/wiki/`: articles written from posts in the DIY Solar Nigeria Telegram group. See [The wiki](#the-wiki) below.
+
 ## How it works out the sizes
 
 | Part | Rule |
@@ -22,25 +24,33 @@ Every number in those rules is in `data/calculator.yaml`, and the page shows the
 | --- | --- |
 | `data/calculator.yaml` | Everything you might change: appliances, states and sun hours, price bands, sizing rules and wording |
 | `template.html` | The page: layout, styles and the calculator's JavaScript |
-| `build.py` | Checks the data and writes `dist/index.html` |
+| `build.py` | Checks the data, writes `dist/index.html`, then builds the wiki into `dist/wiki/` |
 | `validate.py` | Runs every check before a change is merged |
 | `tests/sums.test.js` | Hand-worked answers the sums are checked against |
 | `.github/workflows/validate.yml` | Tells GitHub to run the checks on every pull request |
 | `wrangler.jsonc` | Cloudflare Worker settings |
 | `og.png` | The picture shown when a link to the site is shared |
+| `wiki/` | The wiki: a [Starlight](https://starlight.astro.build/) site, with one Markdown file per article in `wiki/src/content/docs/` |
+| `.node-version` | The Node.js version Cloudflare and GitHub use to build the wiki |
 
 `dist/` is built each time and is never committed.
 
 ## Run it on your computer
 
-You need Python 3 and PyYAML.
+You need Python 3 and PyYAML. The wiki also needs Node.js 22.23.4 or newer.
 
 ```
 pip install pyyaml
 python3 build.py
 ```
 
-Then open `dist/index.html` in a browser. No server is needed.
+Then open `dist/index.html` in a browser. No server is needed for the calculator.
+
+To build the calculator alone, without Node.js:
+
+```
+python3 build.py --calculator-only
+```
 
 If something in the data is wrong, the build stops, says "Nothing was built", and lists each problem and where it is.
 
@@ -63,11 +73,12 @@ Do not change an appliance's `id` once the site is live. Share links use the ids
 python3 validate.py
 ```
 
-It needs Python 3 with PyYAML, and Node.js 18 or newer. It checks that:
+It needs Python 3 with PyYAML, and Node.js 22.23.4 or newer. It checks that:
 
 - the data is valid and the page builds
 - all 36 states and the FCT are listed
-- the wording has no em dashes
+- the wording has no em dashes, in the calculator and in the wiki
+- the wiki builds, and every link inside it points to a page that exists
 - the built page is complete, with nothing left unfilled
 - the page's JavaScript has no syntax errors
 - the sums match answers worked out by hand (`tests/sums.test.js`)
@@ -81,6 +92,34 @@ To stop a pull request being merged while the check is failing:
 3. Tick **Require a pull request before merging**.
 4. Tick **Require status checks to pass**, click **Add checks**, and pick `validate`.
 5. Click **Create**.
+
+## The wiki
+
+The wiki lives in `wiki/` and is published at `/wiki/` on the same address as the calculator. `build.py` builds both, so Cloudflare needs no extra settings.
+
+### Read or edit it on your computer
+
+```
+cd wiki
+npm install
+npm run dev
+```
+
+Open the address it prints, which ends in `/wiki/`. The page reloads as you edit.
+
+### Add an article
+
+1. Create a Markdown file in the right category folder under `wiki/src/content/docs/`. Copy an existing article as a template.
+2. Give it `title`, `description`, `contributors` and `discussed` at the top.
+3. Write links to other wiki pages with `/wiki/` at the front, like `/wiki/panels/orientation-and-tilt/`.
+4. For a new category, create the folder and add one line to the `sidebar` list in `wiki/astro.config.mjs`.
+
+### Rules for wiki content
+
+- Articles use only posts by the agreed contributors. Other group members are not quoted or named.
+- Every article says who it draws on and when the discussions took place.
+- No selling. The group's no-commercial rule applies here too.
+- **Never commit a raw Telegram export.** It contains every member's posts.
 
 ## Put it on Cloudflare
 
@@ -96,7 +135,7 @@ The site runs as a Cloudflare Worker that serves static files.
 | Deploy command | `npx wrangler deploy` |
 | Non-production branch deploy command | `npx wrangler versions upload` |
 
-3. Deploy. Every push to `main` rebuilds and publishes the site. A push to any other branch builds a preview.
+3. Deploy. Every push to `main` rebuilds and publishes the calculator and the wiki. A push to any other branch builds a preview.
 4. To use your own address, open the Worker, go to **Settings**, then **Domains & Routes**, and add a custom domain.
 5. Once the site has an address, put it in `site_url` in `data/calculator.yaml` so shared links show a preview card.
 

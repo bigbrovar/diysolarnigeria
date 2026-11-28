@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 # Copyright (C) 2026 bigbrovar. Licensed under the GNU General Public License, version 3. See LICENSE.
-"""Build the DIY Solar Calculator.
+"""Build the DIY Solar Calculator and the wiki.
 
 Reads data/calculator.yaml, checks it, and writes one self-contained page to
-dist/index.html. Needs Python 3 and PyYAML:
+dist/index.html. Then builds the wiki in wiki/ into dist/wiki/. Needs Python 3
+and PyYAML, plus Node.js for the wiki:
 
     pip install pyyaml
     python3 build.py
+
+To build the calculator alone, which needs no Node.js:
+
+    python3 build.py --calculator-only
 """
 import html
 import json
 import pathlib
 import re
 import shutil
+import subprocess
 import sys
 
 try:
@@ -24,6 +30,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 DATA = ROOT / "data" / "calculator.yaml"
 TEMPLATE = ROOT / "template.html"
 DIST = ROOT / "dist"
+WIKI = ROOT / "wiki"
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
 problems = []
@@ -60,6 +67,26 @@ def only(mapping, allowed, where):
         if key not in allowed:
             problem(where, f"has a field called '{key}' that the calculator does not use. Check the spelling")
     return True
+
+
+def build_wiki():
+    """Build the wiki into dist/wiki/. It is an Astro site, so it needs Node.js and npm."""
+    npm = shutil.which("npm")
+    if not npm:
+        sys.exit("The calculator was built, but the wiki was not: Node.js and npm are missing.\n"
+                 "Install Node.js, or run: python3 build.py --calculator-only")
+    # Install the wiki's packages the first time, or after package-lock.json changes.
+    lock, stamp = WIKI / "package-lock.json", WIKI / "node_modules" / ".package-lock.json"
+    if not stamp.exists() or stamp.stat().st_mtime < lock.stat().st_mtime:
+        print("Installing the wiki's packages. This takes a minute the first time.")
+        if subprocess.run([npm, "ci", "--no-audit", "--no-fund"], cwd=WIKI).returncode:
+            sys.exit("The wiki was not built: its packages could not be installed.")
+    done = subprocess.run([npm, "run", "build"], cwd=WIKI, capture_output=True, text=True)
+    if done.returncode:
+        print((done.stdout + done.stderr).strip())
+        sys.exit("The wiki was not built. The error is shown above.")
+    pages = sum(1 for _ in (DIST / "wiki").rglob("index.html"))
+    print(f"Built dist/wiki/: {pages} pages.")
 
 
 def main():
@@ -233,6 +260,11 @@ def main():
     print(f"Built dist/index.html: {count} appliances, {len(states)} states, {len(bands)} price bands.")
     if not site_url:
         print("Note: site_url is empty, so shared links will not show a preview card yet.")
+
+    if "--calculator-only" in sys.argv[1:]:
+        print("Skipped the wiki, as asked.")
+    else:
+        build_wiki()
 
 
 if __name__ == "__main__":

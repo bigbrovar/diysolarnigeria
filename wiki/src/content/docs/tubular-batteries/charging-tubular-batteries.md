@@ -1,0 +1,70 @@
+---
+title: Charging tubular batteries
+description: The three charge stages, the voltages to set, and how much current a tubular battery can safely take.
+contributors: [bigbrovar, Niyi Solar]
+discussed: March 2023, May 2023, June 2024, August 2024, September 2024, November 2024, April 2026
+sidebar:
+  order: 1
+---
+
+*From posts by bigbrovar, Niyi Solar. Discussed in the group: March 2023, May 2023, June 2024, August 2024, September 2024, November 2024, April 2026.*
+
+**What settings should a charge controller or inverter use for tubular batteries?**
+
+Niyi Solar's warning sets the stakes: tubular batteries are more likely to die from undercharging and sulfation than from the loads you run. A bank sold with a five year promise more often lasts three to four, especially when the installer did not set a proper charge profile for flooded batteries.
+
+## The settings
+
+| Setting | 12 V battery | 24 V bank | 48 V bank |
+|---|---|---|---|
+| Absorption (also called boost or bulk) | 14.4 V | 28.8 V | 57.6 V |
+| Float | 13.5 V | 27.0 V | 54.0 V |
+| Absorption time | At least 2 hours | | |
+| Equalisation, about once a month | 15.5 V | 31.0 V | 62.0 V |
+| Maximum charge current | 10% to 15% of capacity | | |
+
+The 12 V figures are bigbrovar's. The 24 V and 48 V columns are the same figures multiplied up.
+
+## The three stages
+
+bigbrovar's explanation of what the charger is doing:
+
+1. **Bulk.** From empty to about 80% full, the charger sends the battery all the current it has. Most chargers do not limit current in this stage, so this is where a battery gets overcharged if the solar array is too big for it.
+2. **Absorption.** At about 80% the battery starts to resist the charge. The charger holds the voltage at the absorption setting and lets the current fall. This last 20% is slow, and the battery will accept only a fraction of what the panels can produce.
+3. **Float.** Once the battery is full, the charger drops to the float voltage and trickles in just enough to keep it there.
+
+Absorption ends either after a fixed time or when the current falls to a set level. Better controllers let you set that end current. The usual figure is 3% of the battery's C20 capacity: about 6 A for a 200 Ah battery. When the current drops to that at absorption voltage, the battery is full.
+
+## Why 14.4 V and not 14.6 V
+
+General guidance for flooded batteries, especially Western brands such as Trojan, is to absorb at 14.6 V. bigbrovar checked the documentation for the Indian tubular brands sold in Nigeria (Su-Kam, Luminous, Amaron and Eastman) and every one specified 14.4 V. He wrote to Luminous support and got the same answer.
+
+His reading is that the Indian makers chose a voltage that suits a hot climate without temperature-compensated charging, which matches Nigerian conditions. He went with the manufacturers and recommends 14.4 V.
+
+## How much current
+
+Tubular batteries charge slowly. Current beyond what the battery can absorb turns into heat, and heat shortens its life. Members give slightly different limits:
+
+| Member | Limit | For a 200 Ah battery |
+|---|---|---|
+| bigbrovar (2024, June) | 10% of capacity | 20 A |
+| bigbrovar (2023 and late 2024) | 13% of C20 capacity, as a maximum | 26 A |
+| Niyi Solar | 12 A to 15 A per 100 Ah | 24 A to 30 A |
+
+For an old or second-hand bank, stay at the low end or below it.
+
+Because the charger does not limit current during bulk, the limit has to come from the design:
+
+- **Match the array to the battery.** See [Sizing panels to a charge controller](/wiki/panels/sizing-panels-to-a-charge-controller/).
+- **Run heavy loads at midday.** A fridge, freezer or pump running while the sun is strong takes current that would otherwise be forced into the battery.
+- **Cap the controller's output** only as a last resort. On most controllers the cap applies to everything, not only the battery. bigbrovar's example: a 50 A cap on a 24 V system turns a 3 kW array into roughly a 1.4 kW one, so loads above that start draining the battery even in full sun. A controller with a battery current sensor avoids this, because it limits only what goes into the battery.
+
+## Signs of undercharging
+
+A battery that runs down faster than it should is often not getting a full charge. bigbrovar's checklist:
+
+1. Confirm the absorption voltage is set to 14.4 V per 12 V battery.
+2. Confirm the battery stays at that voltage for at least 2 hours in each charge cycle.
+3. Watch the system for a few days to see that both actually happen.
+
+Lead acid batteries are damaged by sitting partly charged, so the aim each day is to get back to full as early as possible.

@@ -1,0 +1,38 @@
+/* Colours and fonts taken from the calculator page (template.html), so the two feel like one site. */
+:root {
+  --sl-font: Figtree, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sl-font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --sl-color-accent-low: #161407;
+  --sl-color-accent: #f7b53b;
+  --sl-color-accent-high: #ffe2a6;
+  --sl-color-white: #e8edf2;
+  --sl-color-gray-1: #e8edf2;
+  --sl-color-gray-2: #a9b5c2;
+  --sl-color-gray-3: #8794a1;
+  --sl-color-gray-4: #4a5866;
+  --sl-color-gray-5: #2b3743;
+  --sl-color-gray-6: #10161d;
+  --sl-color-black: #0a0e12;
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #fff4d9;
+  --sl-color-accent: #9a6200;
+  --sl-color-accent-high: #6b4300;
+  --sl-color-white: #161b21;
+  --sl-color-gray-1: #161b21;
+  --sl-color-gray-2: #55606c;
+  --sl-color-gray-3: #6f7985;
+  --sl-color-gray-4: #9a958a;
+  --sl-color-gray-5: #c9c3b5;
+  --sl-color-gray-6: #e9e5da;
+  --sl-color-gray-7: #f1eee6;
+  --sl-color-black: #f6f4ee;
+}
+
+h1,
+h2,
+h3,
+.site-title {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+}
