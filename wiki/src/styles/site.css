@@ -88,3 +88,29 @@ h3,
 .dg-band { fill: color-mix(in srgb, var(--dg-earth) 8%, transparent); }
 .dg-band.alt { fill: color-mix(in srgb, var(--dg-earth) 16%, transparent); }
 .dg-axis { fill: none; stroke: var(--dg-line); stroke-width: 1.5; }
+
+/* Device-level wiring drawings from Project Anor. */
+.dg-wiring svg text { font-family: var(--sl-font); fill: var(--sl-color-gray-2); }
+.dg-wiring .pos { fill: none; stroke: var(--dg-solar); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .neg { fill: none; stroke: var(--dg-earth); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .ln, .dg-wiring .ld { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .ln { stroke: var(--dg-grid); }
+.dg-wiring .ld { stroke: var(--dg-load); }
+.dg-wiring .pe { fill: none; stroke: var(--sl-color-gray-3); stroke-width: 2; stroke-dasharray: 5 4; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .earthl { stroke: var(--sl-color-gray-3); stroke-width: 2.2; stroke-linecap: round; }
+.dg-wiring .encl { fill: none; stroke: var(--dg-line); stroke-width: 1.5; stroke-dasharray: 7 6; }
+.dg-wiring .lbl { font: 600 11.5px var(--sl-font); letter-spacing: 0.08em; text-transform: uppercase; fill: var(--sl-color-gray-3); }
+.dg-wiring .val { font: 500 13px var(--sl-font-mono); fill: var(--sl-color-white); }
+.dg-wiring .valm { font: 400 12px var(--sl-font-mono); fill: var(--sl-color-gray-2); }
+.dg-wiring .comp rect.cb { fill: var(--dg-card); stroke: var(--dg-line); stroke-width: 1.2; }
+.dg-wiring .dv { fill: var(--dg-card); stroke: var(--sl-color-white); stroke-width: 1.4; }
+.dg-wiring .dvf { fill: var(--sl-color-gray-6); stroke: var(--dg-line); stroke-width: 1; }
+.dg-wiring .scr { fill: var(--dg-card); stroke: var(--sl-color-white); stroke-width: 1.2; }
+.dg-wiring .sym { fill: none; stroke: var(--sl-color-white); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wiring .hd { fill: var(--sl-color-white); opacity: 0.82; }
+.dg-wiring .win { fill: var(--dg-batt); }
+.dg-wiring .din { fill: var(--sl-color-gray-6); stroke: var(--dg-line); stroke-width: 1; }
+.dg-wiring .jd.jp { fill: var(--dg-solar); }
+.dg-wiring .jd.jn { fill: var(--dg-earth); }
+.dg-wiring .jd.jg { fill: var(--dg-grid); }
+.dg-wiring .jd.jl { fill: var(--dg-load); }

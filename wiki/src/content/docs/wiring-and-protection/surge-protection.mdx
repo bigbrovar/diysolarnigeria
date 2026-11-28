@@ -8,6 +8,7 @@ sidebar:
 ---
 
 import Schematic from '../../../components/Schematic.astro';
+import WiringDrawing from '../../../components/WiringDrawing.astro';
 
 *From posts by bigbrovar, Niyi Solar. Discussed in the group: December 2023, June 2024, July 2024, June 2025.*
 
@@ -37,6 +38,22 @@ There is no single device that does the job. bigbrovar's order of priority:
 
 Each layer passes a smaller surge to the next.
 
+## Keep the layers apart
+
+A Type 1 and a Type 2 SPD must not sit side by side with almost no cable between them. They need to be coordinated, so that they act in turn.
+
+The reason: the Type 2 is the finer device and reacts at a lower voltage. With no cable between the two, a surge reaches both at the same instant and the Type 2 tries to take all of it, including the heavy part the Type 1 was there for. The Type 2 is destroyed and the Type 1 does little. A length of cable between them adds enough impedance for the Type 1 to act first and take the bulk of the surge.
+
+What to do:
+
+- **Type 1 to Type 2.** There is no single distance that suits every pair of devices. The minimum cable length depends on the two models, and the manufacturer gives it in a coordination table. Look it up for the pair you are buying.
+- **Not enough room?** Two options: a decoupling coil fitted between them, if the manufacturer specifies one, or a combined Type 1+2 device, which is built and tested as one coordinated unit. A combined device is the simple answer for a home where everything is in one board.
+- **Type 2 to Type 3.** Plug-in and socket surge protectors are meant to have at least 10 m of cable between them and the distribution board.
+
+The same thinking applies to the equipment itself. An SPD protects best when it is close to what it protects, so a long cable run to an inverter or a second board deserves a Type 2 SPD of its own at the far end.
+
+This section is from manufacturers' guidance, not from group posts. See [Schneider Electric on the 10 m rule](https://www.se.com/ng/en/faqs/FA370836/) and this [guide to SPD coordination](https://viox.com/spd-coordination-cascading-guide/).
+
 ## Choosing the ratings
 
 Niyi Solar's figures:
@@ -60,6 +77,8 @@ Niyi Solar's order, from the source to the equipment:
 
 The SPD goes upstream of what it protects, and its breaker goes upstream of the SPD.
 
+<WiringDrawing name="spd-ac" kind="ac" caption="An SPD on an AC board. Live and neutral loop from the main breaker along the rail. The surge protector taps both, and its bottom terminal goes to earth. Drawing from Project Anor, with example ratings." />
+
 Tighten the terminals properly. SPD data sheets give a minimum torque of around 3 Nm, because a solid surge can knock a loose terminal free.
 
 ## On the solar side
@@ -69,5 +88,9 @@ bigbrovar's own arrangement:
 - Each string of panels comes down to the inverter board on its own cable, through its own single pole DC breaker. The strings are joined after the breakers.
 - Size each breaker at about 1.25 times the panel's short circuit current (Isc, on the panel label), and pick the nearest standard size. His strings are three panels in series, about 150 V and 14.6 A, on 16 A, 500 V DC breakers.
 - One DC SPD sits on the combined output of all the strings.
+
+<WiringDrawing name="spd-dc" kind="dc" caption="An SPD in a solar combiner box. The string enters the bottom of its fuses. From the fuse tops, positive and negative loop to the surge protector and on to the two-pole DC breaker. The surge protector's earth terminal goes to the earth bar and on to the earth rod. Drawing from Project Anor, with example ratings." />
+
+In that drawing each string has its own fuses, SPD and breaker, which is how Project Anor builds a combiner box. bigbrovar's own system uses one SPD after the strings are joined. Both protect the cable run into the house.
 
 The breakers protect the strings from each other and from a fault at the controller. The SPD protects the system and the house from a surge arriving on the solar cable.

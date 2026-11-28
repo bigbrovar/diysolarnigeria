@@ -112,7 +112,7 @@ export const diagrams = {
 
   'spd-layers': {
     w: 760, h: 300,
-    caption: 'Surge protection in layers. Each device passes a smaller surge to the next, and every one needs a good connection to earth.',
+    caption: 'Surge protection in layers. Each device passes a smaller surge to the next. The layers need cable between them to work in turn, and every one needs a good connection to earth.',
     legend: ['grid', 'earth'],
     blocks: [
       { at: [10, 40, 150, 64], k: 'grid', icon: 'grid', t: 'Supply', s: ['Meter'] },
@@ -133,6 +133,8 @@ export const diagrams = {
       { at: [290, 157], text: 'Up about 3,500 V' },
       { at: [490, 140], text: '8 to 20 kA' },
       { at: [490, 157], text: 'Up 1,500 V or less' },
+      { at: [375, 24], anchor: 'middle', k: 'b', text: 'Enough cable between' },
+      { at: [575, 24], anchor: 'middle', k: 'b', text: '10 m of cable or more' },
     ],
   },
 
