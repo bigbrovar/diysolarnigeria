@@ -35,8 +35,6 @@ h2{margin:0;font:600 1.4rem/1.2 var(--f-d)}
 h3{margin:0;font:600 .98rem/1.3 var(--f-b)}
 .btn{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line2);background:var(--panel);cursor:pointer}
 .btn:hover{border-color:var(--solar)}
-a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
-.acts{display:flex;flex-wrap:wrap;gap:10px}
 .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
 .set{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .set>label,.set>.lab{font-size:.82rem;color:var(--muted)}
@@ -108,10 +106,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:
     <h1>__TITLE__</h1>
     <p class="sub">__TAGLINE__</p>
   </div>
-  <div class="acts">
-    <a class="btn" href="/wiki/">Read the wiki</a>
-    <button class="btn" id="share" type="button">Copy share link</button>
-  </div>
+  <button class="btn" id="share" type="button">Copy share link</button>
 </header>
 
 <section class="sets" aria-label="Where you are and what you pay">

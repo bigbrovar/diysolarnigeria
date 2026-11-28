@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { draft } from './src/site.config.js';
 
 // The wiki is served from /wiki/ on the same address as the calculator.
 // build.py writes the calculator to ../dist, and this writes the wiki beside it.
@@ -16,8 +17,10 @@ export default defineConfig({
       description:
         'Practical solar knowledge from the DIY Solar Nigeria Telegram group, organised by topic.',
       customCss: ['./src/styles/site.css'],
-      components: { Footer: './src/components/Footer.astro' },
+      components: { Footer: './src/components/Footer.astro', Banner: './src/components/Banner.astro' },
       head: [
+        // While the wiki is a draft, ask search engines not to list it.
+        ...(draft ? [{ tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' } }] : []),
         { tag: 'link', attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' } },
         {
           tag: 'link',

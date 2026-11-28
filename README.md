@@ -98,6 +98,17 @@ To stop a pull request being merged while the check is failing:
 
 The wiki lives in `wiki/` and is published at `/wiki/` on the same address as the calculator. `build.py` builds both, so Cloudflare needs no extra settings.
 
+### Draft or live
+
+The wiki is published at `/wiki/` but the calculator does not link to it, so only people who are given the address will find it.
+
+While `draft` is `true` in `wiki/src/site.config.js`, every wiki page shows a "Draft for review" banner and asks search engines not to list it.
+
+To go live:
+
+1. Set `draft` to `false` in `wiki/src/site.config.js`.
+2. To link to the wiki from the calculator, add `<a class="btn" href="/wiki/">Read the wiki</a>` beside the share button in `template.html`.
+
 ### Read or edit it on your computer
 
 ```
