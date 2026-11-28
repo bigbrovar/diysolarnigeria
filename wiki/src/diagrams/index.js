@@ -157,6 +157,29 @@ export const diagrams = {
     ],
   },
 
+  'earth-rods': {
+    w: 760, h: 330,
+    caption: 'Several earth rods bonded into one earth system. The panels go straight to one rod, and the house earth comes from a different rod.',
+    legend: ['earth'],
+    blocks: [
+      { at: [20, 20, 220, 64], k: 'solar', icon: 'pv', t: 'Panels and rack', s: ['6 mm² or more'] },
+      { at: [520, 20, 220, 64], k: 'grid', icon: 'board', t: 'Earth busbar', s: ['Indoors'] },
+      { at: [20, 196, 200, 84], k: 'earth', icon: 'earth', t: 'Rod A', s: ['Driven into', 'undisturbed soil'] },
+      { at: [280, 196, 200, 84], k: 'earth', icon: 'earth', t: 'Rod B', s: ['Inspection cover', 'on every rod'] },
+      { at: [540, 196, 200, 84], k: 'earth', icon: 'earth', t: 'Rod C', s: ['Ground kept', 'moist all year'] },
+    ],
+    wires: [
+      { d: 'M120 84 V196', k: 'earth', label: 'Direct', at: [130, 144] },
+      { d: 'M630 84 V196', k: 'earth', label: '10 to 16 mm²', at: [640, 144] },
+      { d: 'M220 238 H280', k: 'earth' },
+      { d: 'M480 238 H540', k: 'earth' },
+    ],
+    notes: [
+      { at: [380, 180], anchor: 'middle', text: 'Bonded together, 16 mm² or more' },
+      { at: [380, 312], anchor: 'middle', k: 'b', text: 'Rods spaced 2 to 3 rod lengths apart' },
+    ],
+  },
+
   'top-balance': {
     w: 760, h: 220,
     caption: 'Top balancing by hand: every cell is charged to 3.65 V alone, then all cells are joined in parallel and charged to 3.65 V again.',

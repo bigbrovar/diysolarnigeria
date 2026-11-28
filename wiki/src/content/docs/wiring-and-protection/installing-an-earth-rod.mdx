@@ -1,0 +1,132 @@
+---
+title: Installing an earth rod (TT earthing)
+description: How members install, bond and test earth rods on the TT earthing used in Nigerian homes, with published best practice alongside.
+contributors: [Niyi Solar, bigbrovar, Samil]
+discussed: April 2023, May 2024, July 2024, May 2025
+sidebar:
+  order: 4
+---
+
+import Schematic from '../../../components/Schematic.astro';
+
+*From posts by Niyi Solar, bigbrovar, Samil. Discussed in the group: April 2023, May 2024, July 2024, May 2025.*
+
+**How do I install an earth rod properly, and how do I know it is good enough?**
+
+:::danger
+An earth that looks finished but does not work is worse than none, because you will trust it. Have the installation tested with a proper earth tester and checked by a qualified electrician.
+:::
+
+## TT earthing in one paragraph
+
+Most Nigerian homes are on what is called a TT system. The supply's neutral is earthed at the transformer, but no earth wire comes to your house. Your house makes its own earth with a rod in the ground. Because a rod in soil has a fairly high resistance, a fault to earth may not draw enough current to trip an ordinary breaker. That is why a TT installation needs an **RCD** as well as the rod. bigbrovar: the RCD complements the earth rod in tripping faults.
+
+For what connects to the earth system and the rule about bonding neutral, see [Earthing](/wiki/wiring-and-protection/earthing/).
+
+<Schematic name="earth-rods" />
+
+## Start with the soil
+
+- **Test before you buy materials.** Niyi Solar: the proper first step is a soil resistivity test with an earth tester, to know whether your soil needs any enhancement at all.
+- **A borehole-type soil survey helps too.** bigbrovar: it shows rock and soil conditions and does not cost much.
+- **Rocky and sandy ground is the hard case.** That is where enhancement material earns its cost. Ordinary soil often needs nothing added.
+
+## Choose a damp spot
+
+Moisture is what makes soil conduct. bigbrovar put his main rod a few feet from the soakaway that takes his kitchen waste water, so the ground around it stays damp all year. It measured 14 ohms in the dry season.
+
+Niyi Solar's advice is the same in principle: keep the ground around the rod moist.
+
+## Drive the rod into undisturbed ground
+
+The rod needs firm contact with soil that has never been dug. Soil that is dug out and put back stays loose for years, and loose soil conducts poorly.
+
+| Member | Method |
+|---|---|
+| Niyi Solar | For a 6 foot rod, auger a hole about 4 feet deep, then drive at least the last 2 feet of the rod into the solid ground at the bottom. Backfill with the soil you removed, or with enhancement material if the soil test calls for it. |
+| bigbrovar | Dig about 2 feet, drive the rod into the compacted earth at the bottom of the hole, and test it before adding anything. |
+
+Samil's checks on a finished job:
+
+- The rod should stay straight. Tie it in place until the backfill settles.
+- Each rod should be covered by an earth inspection chamber, so the connection can be reached and tested later.
+- You should be able to see how the rods are joined and what cable was used.
+
+## More than one rod
+
+One rod is often not enough. Add rods and bond them together.
+
+- **How many:** Niyi Solar's method is to drive a rod, measure, bond the next one to it, and measure again, until you reach your target.
+- **How far apart:** Niyi Solar gives 15 to 18 feet between 6 foot rods. bigbrovar's three rods are 10 feet apart.
+- **Bonding cable:** at least 16 mm² between rods (Niyi Solar). bigbrovar used 25 mm² bare copper.
+
+What bonding is worth: bigbrovar had his system tested with the other rods disconnected from the main one. The reading went from 14 ohms to 30 ohms.
+
+## Charcoal, salt and enhancement material
+
+The common local practice is to pack the hole with charcoal and salt. Members advise against it.
+
+| Material | Members' view |
+|---|---|
+| Salt | Lowers resistance at first, then washes away with the rain and has to be replaced. It can also corrode the rod. |
+| Charcoal | Niyi Solar in 2024: it gives a good first reading but corrodes the rod, so it is better to use nothing. In an earlier post, in 2023, he listed carbon and coke powder among materials that conduct well. |
+| Bentonite clay | A reasonable backfill. bigbrovar's caution is that it can crack in the dry season, and local product quality is uncertain. |
+| Ground enhancement material (GEM) | Conducts, and attracts and holds moisture all year. bigbrovar used it on a rocky site where nothing else would do. It is expensive: he was quoted about ₦80,000 for a 12.5 kg bag in 2024, up from about ₦14,000 in 2022, and he doubts much of what is on the market is genuine. |
+
+Two practical points:
+
+- Niyi Solar's test for an enhancement powder: put a multimeter on it and check that it conducts.
+- bigbrovar: for a home, enhancement material is not always needed. Sink the rod, measure, and decide from the reading.
+
+## Connecting it up
+
+Niyi Solar's layout, which the diagram shows:
+
+- Bond all the rods to each other.
+- Take the solar panel frames straight to one of the rods, in 6 mm² cable at least.
+- From a **different** rod, bring the earth into the house in 10 to 16 mm² cable, to an earth busbar. The inverter and other equipment connect to that busbar.
+
+## What reading is good enough?
+
+Have the resistance measured with an earth resistance tester, in the dry season, when the reading is at its worst. bigbrovar's was measured by a utility official with a Fluke earth tester.
+
+bigbrovar's reading of the guidance for a home on TT earthing with RCDs:
+
+| Reading | Meaning |
+|---|---|
+| 20 to 80 ohms | Sufficient for a home |
+| Under 100 ohms | The recommended target in UK guidance |
+| Under 200 ohms | The upper limit in UK guidance |
+| 5 ohms or less | An industrial and commercial requirement, not needed for a home |
+
+A low reading does not remove the need for an RCD. On a TT system the two work together.
+
+## Published best practice
+
+*This section is from published sources, not from group posts.*
+
+**Why 200 ohms, and what the RCD has to do with it.** The rule behind TT earthing is that a fault must not leave more than 50 V on exposed metalwork. So the rod's resistance multiplied by the RCD's trip current must not exceed 50 V. For a 30 mA RCD that allows up to about 1,666 ohms on paper. In practice the same reference says the resistance should never be above 200 ohms, and notes a proposal to lower that to 100 ohms. By the same sum, a 300 mA RCD allows only about 167 ohms.
+
+**Rods.** The usual rod is copper-clad steel, in sections of 1 or 2 m that screw together so the rod can be driven deeper, for example down to the water table where the soil is poor. Galvanised steel rods should be at least 15 mm thick and 2 m long.
+
+**Spacing.** Rods should be spaced 2 to 3 times the depth they are driven to. Niyi Solar's 15 to 18 feet for 6 foot rods matches this.
+
+**Soil makes a huge difference.** Typical resistivity figures:
+
+| Ground | Resistivity |
+|---|---|
+| Fertile soil, or damp compacted fill | About 50 ohm-metres |
+| Dry soil, gravel, or loose fill | About 500 ohm-metres |
+| Stony ground, dry sand, cracked rock | About 3,000 ohm-metres |
+
+That is a sixty-fold range, which is why the same rod gives very different readings in different places.
+
+**Season.** Changes in moisture affect the soil down to about 2 m. At 1 m deep, a rod's resistance can be about three times higher in the dry season than in the wet. Test in the dry season, and go deeper where you can.
+
+**Joints.** Joints corrode. Clean every new joint thoroughly and wrap it with greased tape.
+
+**Make it testable.** Fit a removable link so the rod can be disconnected from the installation for testing.
+
+**How the test is done.** The rod is disconnected from the installation. Two temporary test spikes are driven in a straight line from it, typically about 25 m apart. The tester reads the resistance. The middle spike is then moved a little nearer and a little further, and the three readings should agree. If they do not, the spikes are moved further out and the test is repeated. Reconnect the rod afterwards.
+
+Sources: [Electrical Installation Guide, installation and measurements of earth electrodes](https://www.electrical-installation.org/enwiki/Installation_and_measurements_of_earth_electrodes) (Schneider Electric), [The Electricians Guide, earth electrode testing](https://www.tlc-direct.co.uk/Book/8.6.1.htm). The second is one of the references bigbrovar cited in the group.
