@@ -40,15 +40,19 @@ Each layer passes a smaller surge to the next.
 
 ## Keep the layers apart
 
-A Type 1 and a Type 2 SPD must not sit side by side with almost no cable between them. They need to be coordinated, so that they act in turn.
+A Type 1 and a Type 2 SPD are both wired to the same live and neutral, one after the other along the circuit. What matters is the **length of supply cable between the point where the Type 1 connects and the point where the Type 2 connects**.
 
-The reason: the Type 2 is the finer device and reacts at a lower voltage. With no cable between the two, a surge reaches both at the same instant and the Type 2 tries to take all of it, including the heavy part the Type 1 was there for. The Type 2 is destroyed and the Type 1 does little. A length of cable between them adds enough impedance for the Type 1 to act first and take the bulk of the surge.
+If the two are mounted next to each other on the same rail, that length is only a few centimetres. That is the problem. They need a real length of cable between their connection points so that they act in turn. This is called coordination.
+
+The reason: the Type 2 is the finer device and reacts at a lower voltage. When the two are connected at almost the same point, a surge reaches both at the same instant and the Type 2 tries to take all of it, including the heavy part the Type 1 was there for. The Type 2 is destroyed and the Type 1 does little. A run of cable between the two connection points adds enough impedance to hold the surge back for a moment, so the Type 1 acts first and takes the bulk of it.
+
+In a typical house this happens naturally when the Type 1 is in the board at the meter or service entrance and the Type 2 is in a board further inside the building.
 
 What to do:
 
-- **Type 1 to Type 2.** There is no single distance that suits every pair of devices. The minimum cable length depends on the two models, and the manufacturer gives it in a coordination table. Look it up for the pair you are buying.
-- **Not enough room?** Two options: a decoupling coil fitted between them, if the manufacturer specifies one, or a combined Type 1+2 device, which is built and tested as one coordinated unit. A combined device is the simple answer for a home where everything is in one board.
-- **Type 2 to Type 3.** Plug-in and socket surge protectors are meant to have at least 10 m of cable between them and the distribution board.
+- **Type 1 to Type 2.** There is no single cable length that suits every pair of devices. The minimum depends on the two models, and the manufacturer gives it in a coordination table. Look it up for the pair you are buying.
+- **Both in the same board?** Two options: a decoupling coil wired in the line between them, if the manufacturer specifies one, or a combined Type 1+2 device, which is built and tested as one coordinated unit. A combined device is the simple answer for a home where everything is in one board.
+- **Type 2 to Type 3.** Plug-in and socket surge protectors are meant to have at least 10 m of circuit cable between the distribution board and the socket they are used at.
 
 The same thinking applies to the equipment itself. An SPD protects best when it is close to what it protects, so a long cable run to an inverter or a second board deserves a Type 2 SPD of its own at the far end.
 

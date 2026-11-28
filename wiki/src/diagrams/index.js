@@ -133,7 +133,7 @@ export const diagrams = {
       { at: [290, 157], text: 'Up about 3,500 V' },
       { at: [490, 140], text: '8 to 20 kA' },
       { at: [490, 157], text: 'Up 1,500 V or less' },
-      { at: [375, 24], anchor: 'middle', k: 'b', text: 'Enough cable between' },
+      { at: [375, 24], anchor: 'middle', k: 'b', text: 'A real length of cable' },
       { at: [575, 24], anchor: 'middle', k: 'b', text: '10 m of cable or more' },
     ],
   },
