@@ -5,12 +5,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <aside class="disclaimer" aria-label="Disclaimer">
-  <strong>Not a reference guide.</strong>
+  <strong>Not a reference guide.</strong>{' '}
   This wiki shares the experience of members of the DIY Solar Nigeria group. It is general
   information, not professional advice, an engineering design or a standard. Electrical and battery
   work can cause fire, injury or death. Check everything against your equipment's manuals and the
   rules where you live, and use a qualified electrician. The contributors and maintainers accept no
-  responsibility for any loss, damage or injury that comes from using it.
+  responsibility for any loss, damage or injury that comes from using it.{' '}
   <a href={`${base}/about/disclaimer/`}>Read the full disclaimer</a>.
 </aside>
 
@@ -27,6 +27,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     line-height: 1.6;
     color: var(--sl-color-gray-2);
     background: var(--sl-color-gray-6);
+  }
+  .disclaimer a {
+    color: var(--sl-color-text-accent);
   }
   .disclaimer strong {
     color: var(--sl-color-white);
